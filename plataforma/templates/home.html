@@ -1,0 +1,33 @@
+
+{% extends 'base.html'%}
+{% block 'head'%}
+Cadastro
+{% endblock %}
+
+
+{% block 'body'%}
+    <div class="container">
+        <h1>Alteracao de cadastro de CNPJ</h1>
+        <form method="POST" action="{% url 'cadastro'%}">{% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required>
+              </div>
+              <div class="col">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="col">
+                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
+              </div>
+              <div class="col">
+                <input type="text" name="telefone" class="form-control" placeholder="Telefone" required>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-dark btn-block">Alterar</button>
+        
+        </form>
+      </div>
+
+{%endblock%}

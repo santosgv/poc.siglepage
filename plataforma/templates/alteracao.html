@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block 'head'%}
+Alteracao da Localizacao
+{% endblock %}
+
+{% block 'body'%}
+<div class="row">
+
+        <div class="col-sm fundo">
+
+        <form method="POST" action="#">{% csrf_token %}
+
+          <br>
+          <h3 class="rosa">CEP</h3>
+          <input type="text" required="required" class="form-control" placeholder="CEP" name="CEP">
+          <br>
+          <br>
+          <h3 class="rosa">Cidade*:</h3>
+          <select class="form-control">
+            <option selected>Estado</option>
+              <option >MG</option>
+              <option >SP</option>
+              <option >BA</option>
+              <option >DF</option>
+          </select>
+
+          <br>
+          <h3 class="rosa">Rua*:</h3>
+          <input type="text" required="required" class="form-control" placeholder="Rua" id="rua" name="rua">
+
+          <br>
+          <h3 class="rosa">Número*:</h3>
+          <input type="text" required="required" class="form-control" placeholder="Número" name="numero">
+
+          <br>
+          <h3 class="rosa">Bairro*:</h3>
+          <input type="text" required="required" class="form-control" placeholder="Bairro" id="bairro" name="bairro">
+          <br>
+
+    </div>
+
+  </div>
+
+<hr>
+<br>
+
+    <button  class="btn btn-success btn-lg">Proceguir</button>
+
+</div>
+
+</form>
+{%endblock%}
