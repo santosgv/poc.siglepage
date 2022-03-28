@@ -106,14 +106,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS =(os.path.join(BASE_DIR,'templates/static'),)
 STATIC_ROOT = os.path.join('static')
 
 MEDIA_ROOT =os.path.join(BASE_DIR,'media')
-MEDIA_url ='media/'
+MEDIA_url ='/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FROM_EMAIL='Vitor Dos Santos | Pagamento'
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER='santosgomesv@gmail.com'
+EMAIL_HOST_PASSWORD='ipvecrohrvnoiyeb'
+EMAIL_USE_TLS=True
+EMAIL_PORT =587
+EMAIL_HOST='smtp.gmail.com'

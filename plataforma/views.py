@@ -1,7 +1,6 @@
 
-import json
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render , HttpResponse
+from django.core.mail import send_mail
 from .models import Acessoria
 
 def home(request):
@@ -34,32 +33,39 @@ def valida(request):
     Cidade = request.POST.get('Cidade')
     Estado = request.POST.get('Estado')
 
-   # Cadastro =Acessoria(nome = nome, 
-   #                     email= email,
-   #                     CPF =cpf,
-   #                     telefone=telefone,
-   #                     RG = rg,
-   #                     ExpeditorRG =ExpeditorRG,
-   #                     UF_RG =uf_rg,
-   #                     Data_Nascimento = Data_Nascimento,
-   #                     Nome_Mae = Nome_Mae,
-   #                     Banco = Banco,
-   #                     Imposto = Imposto,
-   #                     Nome_Fantasia =Nome_Fantasia ,
-   #                     Capitao_Inicial = Capitao_Inicial,
-   #                     OcupacaoPrincipal = OcupacaoPrincipal,
-   #                     OcupacaoSegundario = OcupacaoSegundario,
-   #                     CEP =cep ,
-   #                     Rua = Rua,
-   #                     Numero =Numero,
-   #                     Complemento =Complemento,
-   #                     Bairro =Bairro,
-   #                     Cidade =Cidade ,
-   #                     Estado =Estado
-   #                     )
-   # Cadastro.save()
-
-    return render(request,'pagamento.html')
+    Cadastro =Acessoria(nome = nome, 
+                        email= email,
+                        CPF =cpf,
+                        telefone=telefone,
+                        RG = rg,
+                        ExpeditorRG =ExpeditorRG,
+                        UF_RG =uf_rg,
+                        Data_Nascimento = Data_Nascimento,
+                        Nome_Mae = Nome_Mae,
+                        Banco = Banco,
+                        Imposto = Imposto,
+                        Nome_Fantasia =Nome_Fantasia ,
+                        Capitao_Inicial = Capitao_Inicial,
+                        OcupacaoPrincipal = OcupacaoPrincipal,
+                        OcupacaoSegundario = OcupacaoSegundario,
+                        CEP =cep ,
+                        Rua = Rua,
+                        Numero =Numero,
+                        Complemento =Complemento,
+                        Bairro =Bairro,
+                        Cidade =Cidade ,
+                        Estado =Estado
+                        )
+    #Cadastro.save()
+    mensagem =f'''
+    Segue dados do Cadastro
+    {Cadastro.nome}
+    {Cadastro.email}
+    {Cadastro.Nome_Fantasia}
+    '''
+    send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
+    #return render(request,'pagamento.html')
+    return HttpResponse(Cadastro.email)
 
 
 def alterar(request):
