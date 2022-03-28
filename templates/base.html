@@ -12,14 +12,22 @@
     <title>{% block 'head'%}
         {% endblock %}
     </title>
-
-    <nav class="nav">
-        <a class="nav-link" href="{%url 'cadastro'%}">Abrir mai</a>
-        <a class="nav-link" href="#">Alterar mai</a>
-        <a class="nav-link" href="#">Cancelar mai</a>
-        <a class="nav-link" href="#">Declaracao Anual</a>
-      </nav>
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link " href="{%url 'cadastro'%}">Abrir mai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'alterar'%}">Alterar mai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'cancelar'%}">Cancelar mai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{%url 'declaracao'%}">Declaracao Anual</a>
+      </li>
+    </ul>
   </head>
+  <br>
   <body>
     {% block 'body' %}
 

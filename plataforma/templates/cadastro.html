@@ -2,8 +2,220 @@
 {% block 'head'%}
 Cadastro
 {% endblock %}
-
-
 {% block 'body'%}
-    <h1>Cadastro</h1>
+<body>
+    <div class="container">
+      <div class="text-center">
+        <h1>Abrir MAI</h1>
+        </div>
+        <form method="POST" action="{% url 'valida'%}">{% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">NOME</label>
+            <input type="text" class="form-control" name="nome" placeholder="Ex .: Meu nome">
+
+          </div>
+          <div class="form-group">
+            <label>EMAIL</label>
+            <input type="email" class="form-control" name="email" placeholder="Ex .: email@gmail.com">
+          </div>
+          <div class="form-group">
+            <label>TELEFONE</label>
+            <input type="text" class="form-control" name="telefone" placeholder="Ex .: (31) 91234 5678">
+          </div>
+          <div class="form-group">
+            <label>CPF</label>
+            <input type="text" class="form-control" name="cpf" placeholder="Ex .: 000000">
+          </div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Continuar
+          </button>
+          
+          </div>        
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Informaçoes Importantes</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label>RG</label>
+                    <input type="text" class="form-control" name="rg" placeholder="Numero da RG">
+                  </div>
+                  <div class="form-group">
+                    <label>Expedidor RG</label>
+                    <input type="text" class="form-control" name="ExpeditorRG" placeholder="Expedidor RG">
+                  </div>
+                  <div class="form-group">
+                    <label>UF RG</label>
+                    <select class="form-control" name="uf_rg">
+                      <option selected>Escolha um Estado...</option>
+                      <option>AC</option>
+                      <option>AL</option>
+                      <option>AP</option>
+                      <option>AM</option>
+                      <option>BA</option>
+                      <option>CE</option>
+                      <option>DF</option>
+                      <option>ES</option>
+                      <option>GO</option>
+                      <option>MA</option>
+                      <option>MT</option>
+                      <option>MS</option>
+                      <option>MG</option>
+                      <option>PA</option>
+                      <option>PB</option>
+                      <option>PR</option>
+                      <option>PE</option>
+                      <option>PI</option>
+                      <option>RJ</option>
+                      <option>RN</option>
+                      <option>RS</option>
+                      <option>RO</option>
+                      <option>RR</option>
+                      <option>SC</option>
+                      <option>SP</option>
+                      <option>SE</option>
+                      <option>TO</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Data Nascimento</label>
+                    <input type="date" class="form-control" name="Data_Nascimento" placeholder="Data Nascimento">
+                  </div>
+                  <div class="form-group">
+                    <label>Nome Mae</label>
+                    <input type="text" class="form-control" name="Nome_Mae" placeholder="Nome Mae">
+                  </div>
+                  <div class="form-group">
+                  <label>Possui conta de banco ?</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Banco" id="Banco" value="S">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Banco" id="Banco" value="N">
+                    <label class="form-check-label" for="inlineRadio2">Nao</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Ja declarou imposto ?</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Imposto" id="Imposto" value="S">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Imposto" id="Imposto" value="N">
+                    <label class="form-check-label" for="inlineRadio2">Nao</label>
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label>Nome Fantasia</label>
+                    <input type="text" class="form-control" name="Nome_Fantasia" placeholder="Nome Fantasia">
+                  </div>
+                  <div class="form-group">
+                    <label>Capitao Inicial</label>
+                    <input type="text" class="form-control" name="Capitao_Inicial" placeholder="Ex .: 2.000">
+                  </div>
+                  <div class="form-group">
+                  <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Ocupacao Principal</label>
+                    <select class="custom-select mr-sm-2" name="OcupacaoPrincipal" id="inlineFormCustomSelect">
+                      <option selected>Escolha uma Opcao...</option>
+                      <option value="0121101">Viveirista independente</option>
+                      <option value="0159801">Apicultor(a) independente</option>
+                      <option value="0159802">Criador(a) de animais domésticos independente</option>
+                      <option value="0161003">Prestador(a) de serviços de colheita, sob contrato de empreitada, independente</option>
+                      <option value="0161003">Prestador(a) de serviços de roçagem, destocamento, lavração, gradagem e sulcamento, sob contrato de empreitada, independente</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Ocupacao Segundario</label>
+                    <select class="custom-select mr-sm-2" name="OcupacaoSegundario" id="inlineFormCustomSelect">
+                      <option selected>Escolha uma Opcao...</option>
+                      <option value="0121101">Viveirista independente</option>
+                      <option value="0159801">Apicultor(a) independente</option>
+                      <option value="0159802">Criador(a) de animais domésticos independente</option>
+                      <option value="0161003">Prestador(a) de serviços de colheita, sob contrato de empreitada, independente</option>
+                      <option value="0161003">Prestador(a) de serviços de roçagem, destocamento, lavração, gradagem e sulcamento, sob contrato de empreitada, independente</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label>CEP</label>
+                    <input type="text" class="form-control" name="cep" placeholder="Cep">
+                  </div>
+                  <div class="form-group">
+                    <label>Rua</label>
+                    <input type="text" class="form-control" name="Rua" placeholder="Rua">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label>Numero</label>
+                    <input type="text" class="form-control" name="Numero" placeholder="Numero">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label>Complemento</label>
+                    <input type="text" class="form-control" name="Complemento" placeholder="Complemento">
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label>Bairro</label>
+                    <input type="text" class="form-control" name="Bairro" placeholder="Bairro">
+                  </div>
+                  <div class="form-group">
+                    <label>Cidade</label>
+                    <input type="text" class="form-control" name="Cidade" placeholder="Cidade">
+                  </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <select class="form-control" name="Estado">
+                      <option selected>Escolha um Estado...</option>
+                      <option>AC</option>
+                      <option>AL</option>
+                      <option>AP</option>
+                      <option>AM</option>
+                      <option>BA</option>
+                      <option>CE</option>
+                      <option>DF</option>
+                      <option>ES</option>
+                      <option>GO</option>
+                      <option>MA</option>
+                      <option>MT</option>
+                      <option>MS</option>
+                      <option>MG</option>
+                      <option>PA</option>
+                      <option>PB</option>
+                      <option>PR</option>
+                      <option>PE</option>
+                      <option>PI</option>
+                      <option>RJ</option>
+                      <option>RN</option>
+                      <option>RS</option>
+                      <option>RO</option>
+                      <option>RR</option>
+                      <option>SC</option>
+                      <option>SP</option>
+                      <option>SE</option>
+                      <option>TO</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+ 
+  </body>
 {%endblock%}
