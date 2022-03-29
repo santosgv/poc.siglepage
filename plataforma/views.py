@@ -1,4 +1,3 @@
-
 from django.http import JsonResponse
 from django.shortcuts import render , HttpResponse
 from django.core.mail import send_mail
@@ -10,10 +9,11 @@ stripe.api_key= settings.STRIPE_SECRET_KEY
 
 def home(request):
     produto =Produto.objects.get(id=1)
+    
     return render(request,'home.html',{'produto':produto,'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
 def cadastro(request):
-    return render(request,'cadastro.html',{})
+    return render(request,'cadastro.html')
 
 
 def create_checkout_session(request, id):
@@ -24,7 +24,7 @@ def create_checkout_session(request, id):
             {
             'price_data': {
             'currency': 'BRL',
-            'unit_amount': int(produto.preco),
+            'unit_amount': int(produto.preco /100),
             'product_data': {
             'name': produto.nome
                             }
@@ -120,8 +120,8 @@ def cancelar(request):
 def declaracao(request):
     return render(request,'declaracao.html')
 
-def sucesso(request):
-    return HttpResponse('Sucesso')
+def Sucesso(request):
+    return render(request,'Sucesso.html')
 
-def erro(request):
-    return HttpResponse('Erro')
+def Erro(request):
+    return render(request,'Erro.html')
