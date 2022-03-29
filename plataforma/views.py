@@ -1,13 +1,49 @@
 
+from django.http import JsonResponse
 from django.shortcuts import render , HttpResponse
 from django.core.mail import send_mail
-from .models import Acessoria
+from .models import Acessoria,Produto,Pedidos
+import stripe
+from django.conf import settings
+
+stripe.api_key= settings.STRIPE_SECRET_KEY
 
 def home(request):
-    return render(request,'home.html')
+    produto =Produto.objects.get(id=1)
+    return render(request,'home.html',{'produto':produto,'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
 def cadastro(request):
     return render(request,'cadastro.html',{})
+
+
+def create_checkout_session(request, id):
+    produto = Produto.objects.get(id = id)
+    YOUR_DOMAIN = "http://127.0.0.1:8000"
+    checkout_session = stripe.checkout.Session.create(
+    line_items=[
+            {
+            'price_data': {
+            'currency': 'BRL',
+            'unit_amount': int(produto.preco),
+            'product_data': {
+            'name': produto.nome
+                            }
+                            },
+            'quantity': 1,
+            },
+                ],
+    payment_method_types=[
+            'card',
+            'boleto',
+                ],
+    metadata={
+            'id_produto': produto.id,
+            },
+    mode='payment',
+    success_url=YOUR_DOMAIN + '/sucesso',
+    cancel_url=YOUR_DOMAIN + '/erro',
+        )
+    return JsonResponse({'id': checkout_session.id})
 
 def valida(request):
     nome = request.POST.get('nome')
@@ -54,18 +90,25 @@ def valida(request):
                         Complemento =Complemento,
                         Bairro =Bairro,
                         Cidade =Cidade ,
-                        Estado =Estado
+                        Estado =Estado,
+                        
                         )
-    #Cadastro.save()
+    Cadastro.save()
+
+    produto =Produto.objects.get(id=1)
+    
+    pedido =Pedidos(pedido=Cadastro, produto=produto)
+    pedido.save()
+
     mensagem =f'''
     Segue dados do Cadastro
     {Cadastro.nome}
     {Cadastro.email}
     {Cadastro.Nome_Fantasia}
     '''
-    send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
-    #return render(request,'pagamento.html')
-    return HttpResponse(Cadastro.email)
+    #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
+    return render(request,'pagamento.html')
+    #return HttpResponse(Cadastro.email)
 
 
 def alterar(request):
@@ -76,3 +119,9 @@ def cancelar(request):
 
 def declaracao(request):
     return render(request,'declaracao.html')
+
+def sucesso(request):
+    return HttpResponse('Sucesso')
+
+def erro(request):
+    return HttpResponse('Erro')

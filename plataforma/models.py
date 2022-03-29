@@ -1,15 +1,7 @@
 from django.db import models
 
+
 class Acessoria(models.Model):
-
-    choicesSimNao = (('S','Sim'),
-                    ('N','Nao'))
-
-    choicespCnai =(('0121101','Viveirista independente'),
-                    ('0159801','Apicultor(a) independente'),
-                    ('0159802','Criador(a) de animais domésticos independente')
-    )
-
     nome = models.CharField(max_length=200)
     email = models.CharField(max_length=50)
     CPF = models.IntegerField()
@@ -32,6 +24,21 @@ class Acessoria(models.Model):
     Bairro = models.CharField(max_length=50)
     Cidade = models.CharField(max_length=50)
     Estado = models.CharField(max_length=2)
+    
 
     def __str__(self):
         return self.nome
+
+class Produto(models.Model):
+    nome = models.CharField(max_length=100)
+    preco = models.FloatField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.nome
+
+class Pedidos(models.Model):
+    pedido = models.ForeignKey(Acessoria, on_delete= models.CASCADE)
+    produto = models.ForeignKey(Produto, on_delete= models.CASCADE)
+
+    def __str__(self) -> int:
+        return str(self.id)
