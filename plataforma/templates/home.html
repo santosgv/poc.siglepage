@@ -1,55 +1,136 @@
-{% extends 'base.html'%} {% block 'head'%} Home {% endblock %} {% block 'body'%}
-<html>
-  <head>
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-  </head>
-  <body>
-    
-      <section>
-        <div class="product">
-          <div class="description">
-            <h3>{{produto.nome}}</h3>
-            <h5>R$ {{produto.formatado}}</h5>
+{% extends 'base.html'%} {% load static %} {% block 'head'%} 
+Pagina Principal 
+{%endblock %} 
+{% block 'body'%}
+<main>
+  <div class="img-principal text-center">
+    <div class="container-fluid principal">
+      <h3>Faça aqui seu CNPJ MEI</h3>
+      <p>
+        Contrate a Assessoria e Registre agora seu CNPJ MEI. Aproveite as
+        vantagens de ser um Microempreendedor Individual.
+      </p>
+      <img
+        src="{% static '/img/JPEG/JPEG2.jpg' %}"
+        width="60%"
+        height="500px"
+        alt=""
+      />
+    </div>
+    <br />
+    <br />
+    <div class="text-center">
+      <p>
+        LEIA COM ATENÇÃO ESTE NÃO É UM SITE GOVERNAMENTAL O serviço prestado
+        através do site www.meibrasil.com é um serviço privado e opcional. O
+        registro MEI, baixa no CNPJ do MEI e alterações no cadastro do MEI podem
+        ser feitos, gratuitamente sem o acompanhamento profissional deste site,
+        através da plataforma governamental.
+      </p>
+    </div>
+    <section id="menu-itens">
+      <div class="row">
+      <div id="menu" class="card text-center">
+        <div class="container text-center">
+          <div class="row">
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">As Vantagens De Cadastrar Seu CNPJ MEI</h5>
+                <div class="text-center">
+                <p class="card-text">
+                 <strong>Negócio Legal</strong>
+                 <br>
+                  Você terá uma empresa com CNPJ MEI cumprindo todas as obrigações legais por um baixo custo mensal.
+                </p>
+                <br>
+                <strong>Benefícios do INSS</strong>
+                <br>
+                <p>
+                  Basta pagar seu MEI para garantir auxílio doença, salário-maternidade e aposentadoria por idade. 
+                </p>
+                <strong>Empréstimo Facilitado</strong>
+                <p>
+                  Com um CNPJ MEI, você tem crédito facilitado nos maiores Bancos
+                </p>
+                <strong>Assessoria Personalizada</strong>
+                <p>
+                  Contratando nossa assessoria você terá acesso ao CNPJ MEI de forma rápida e eficiente
+                </p>
+              </div>
+                <a
+                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  class="btn btn-success"
+                  >Mais informaçoes</a
+                >
+              </div>
+            </div>
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Altere o cadastro do seu CNPJ MEI</h5>
+                <div class="text-center">
+                  <p class="card-text">
+                   <strong>Negócio Legal</strong>
+                   <br>
+                    Você terá uma empresa com CNPJ MEI cumprindo todas as obrigações legais por um baixo custo mensal.
+                  </p>
+                  <br>
+                  <strong>Benefícios do INSS</strong>
+                  <br>
+                  <p>
+                    Basta pagar seu MEI para garantir auxílio doença, salário-maternidade e aposentadoria por idade. 
+                  </p>
+                  <strong>Empréstimo Facilitado</strong>
+                  <p>
+                    Com um CNPJ MEI, você tem crédito facilitado nos maiores Bancos
+                  </p>
+                  <strong>Assessoria Personalizada</strong>
+                  <p>
+                    Contratando nossa assessoria você terá acesso ao CNPJ MEI de forma rápida e eficiente
+                  </p>
+                </div>
+                <a
+                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  class="btn btn-success"
+                  >Mais informaçoes</a>
+              </div>
+            </div>
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Dê Baixa no seu CNPJ MEI em poucos minutos</h5>
+                <div class="text-center">
+                  <p class="card-text">
+                   <strong>Cancelar CNPJ MEI</strong>
+                   <br>
+                   Encerre suas atividades MEI agora mesmo sem complicação.
+                  </p>
+                  <br>
+                  <strong>Faça o encerramento formal de seu MEI</strong>
+                  <br>
+                  <p>
+                    Dê baixa em seu CNPJ MEI corretamente e evite pendências futuras.
+                  </p>
+                  <strong>Dê baixa mesmo com débitos</strong>
+                  <p>
+                    Possui débitos em aberto e deseja dar baixa em seu CNPJ MEI? Faça o processo completo aqui
+                  </p>
+                  <strong>Assessoria Personalizada</strong>
+                  <p>
+                    Contratando nossa assessoria você terá acesso ao CNPJ MEI de forma rápida e eficiente
+                  </p>
+                </div>
+                <a
+                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  class="btn btn-success"
+                  >Mais informaçoes</a
+                >
+              </div>
+            </div>
+            </div>
           </div>
         </div>
-        <button type="submit" id="checkout-button">Checkout</button>
-      </section>
-    
-    {% csrf_token %}
-  </body>
-  <script type="text/javascript">
-    const csrftoken = document.querySelector(
-      "[name=csrfmiddlewaretoken]"
-    ).value;
-    // Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
-    var checkoutButton = document.getElementById("checkout-button");
-    checkoutButton.addEventListener("click", function () {
-      fetch("{% url 'create_checkout_session' produto.id %}", {
-        method: "POST",
-        headers: {
-          "X-CSRFToken": csrftoken,
-        },
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function (result) {
-          // If redirectToCheckout fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using error.message.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    });
-  </script>
-</html>
+      </div>
+    </div>
+    </section>
+  </div>
+</main>
 {% endblock %}

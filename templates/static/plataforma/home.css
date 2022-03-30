@@ -1,0 +1,31 @@
+:root{
+    --VERDE:#007e7a;
+    --preta:#141414;
+    --branco:#fff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--branco);
+}
+
+div .card{
+    padding: 5px;
+    margin: 10px;
+    align-items: center;
+}
+
+.row{
+    justify-content: center;
+  }
+  
+
+h3{
+    color: var(--VERDE);
+}
+
+p {
+    color: var(--VERDE);
+}

@@ -1,3 +1,5 @@
+import json
+from urllib import request
 from django.http import JsonResponse
 from django.shortcuts import render , HttpResponse
 from django.core.mail import send_mail
@@ -16,35 +18,20 @@ def home(request):
 def cadastro(request):
     return render(request,'cadastro.html')
 
-
-def create_checkout_session(request, id):
-    produto = Produto.objects.get(id = id)
-    YOUR_DOMAIN = "http://127.0.0.1:8000"
-    checkout_session = stripe.checkout.Session.create(
-    line_items=[
-            {
-            'price_data': {
-            'currency': 'BRL',
-            'unit_amount': int(produto.preco /100),
-            'product_data': {
-            'name': produto.nome
-                            }
-                            },
-            'quantity': 1,
-            },
-                ],
-    payment_method_types=[
-            'card',
-            'boleto',
-                ],
-    metadata={
-            'id_produto': produto.id,
-            },
-    mode='payment',
-    success_url=YOUR_DOMAIN + '/sucesso',
-    cancel_url=YOUR_DOMAIN + '/erro',
+@csrf_exempt
+def create_payment(request,id):
+    produto =Produto.objects.get(id=id)
+   
+    # Create a PaymentIntent with the order amount and currency
+    intent = stripe.PaymentIntent.create(
+    amount= int(produto.preco /100),
+    currency='BRL',
+            
         )
-    return JsonResponse({'id': checkout_session.id})
+    return JsonResponse({
+        'clientSecret': intent['client_secret']
+        })
+  
 
 @csrf_exempt
 def stripe_webhook(request):
