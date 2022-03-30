@@ -22,8 +22,8 @@ div .card{
   }
   
 
-h3{
-    color: var(--VERDE);
+.textoh3{
+    color: #007e7a;
 }
 
 p {
