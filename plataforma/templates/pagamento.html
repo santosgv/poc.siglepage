@@ -1,10 +1,4 @@
-{% extends 'base.html'%}
-{% block 'head'%}
-Pagamento
-{% endblock %}
-{% block 'body'%}
-<div class="container">
-    {% extends 'base.html'%} {% block 'head'%} Home {% endblock %} {% block 'body'%}
+{% extends 'base.html'%} {% block 'head'%} Home {% endblock %} {% block 'body'%}
 <html>
   <head>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
@@ -16,7 +10,7 @@ Pagamento
         <div class="product">
           <div class="description">
             <h3>{{produto.nome}}</h3>
-            <h5>{{produto.preco}}</h5>
+            <h5>R$ {{produto.formatado}}</h5>
           </div>
         </div>
         <button type="submit" id="checkout-button">Checkout</button>
@@ -58,7 +52,4 @@ Pagamento
     });
   </script>
 </html>
-{% endblock %}
-
-</div>
 {% endblock %}

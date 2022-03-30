@@ -34,7 +34,7 @@ class Produto(models.Model):
     preco = models.FloatField(null=True, blank=True)
 
     def formatado(self):
-        return self.preco/100
+        return "{:.2f}".format(self.preco)
 
     def __str__(self) -> str:
         return self.nome
