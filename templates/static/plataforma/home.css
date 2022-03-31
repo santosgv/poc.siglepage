@@ -1,6 +1,6 @@
 :root{
     --VERDE:#007e7a;
-    --preta:#141414;
+    --cinza:#808080;
     --branco:#fff;
 }
 
@@ -22,8 +22,8 @@ div .card{
   }
   
 
-.textoh3{
-    color: #007e7a;
+.textocor{
+    color: var(--cinza);
 }
 
 p {

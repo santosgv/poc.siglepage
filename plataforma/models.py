@@ -40,7 +40,6 @@ class Produto(models.Model):
 class Pedidos(models.Model):
     pedido = models.ForeignKey(Acessoria, on_delete= models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete= models.CASCADE)
-    valor = models.CharField(max_length=5)
 
     def __str__(self) -> int:
         return str(self.id)

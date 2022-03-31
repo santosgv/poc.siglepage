@@ -18,7 +18,8 @@ def cadastro(request):
 
 @csrf_exempt
 def create_payment(request,id):
-    pedido =Pedidos.objects.get(id=id) 
+    pedido =Pedidos.objects.get(id=id)
+    
 
     # Create a PaymentIntent with the order amount and currency
     intent = stripe.PaymentIntent.create(
@@ -52,7 +53,8 @@ def stripe_webhook(request):
     print(event)
     if event['type'] == 'charge.succeeded':
         session = event['data']['object']
-        pedido =Pedidos.objects.get(id=id)
+        pedido =Pedidos(produto_id=session['metadata']['id_produto'])
+
         #mensagem =f'''
         #Segue dados do Cadastro
         #com sucesso
@@ -113,7 +115,7 @@ def valida(request):
 
     produto =Produto.objects.get(id=1)
    
-    pedido =Pedidos(pedido=Cadastro, produto=produto ,valor=produto.preco)
+    pedido =Pedidos(pedido=Cadastro, produto=produto)
     pedido.save()
   
 
@@ -124,7 +126,7 @@ def valida(request):
     {Cadastro.Nome_Fantasia}
     '''
     #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
-    return render(request,'pagamento.html',{'pedido':pedido, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    return render(request,'pagamento.html',{'pedido':pedido,'cadastro':Cadastro,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
     #return HttpResponse(Cadastro.email)
 
 
