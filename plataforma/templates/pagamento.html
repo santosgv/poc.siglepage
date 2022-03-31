@@ -162,8 +162,9 @@
       />
         <div class="product">
           <div class="description">
-            <h1>{{produto.nome}}</h1>
-            <h1>R$ {{produto.formatado}}</h1>
+            <h1>{{pedido.pedido}}</h1>
+            <h1>{{pedido.produto}}</h1>
+            <h1>{{pedido.valor}}</h1>
           </div>
         </div>
         <form id="payment-form">
@@ -198,7 +199,7 @@
         setLoading(true)
         event.preventDefault()
 
-        const response = fetch("{% url 'create_payment-intent' produto.id %}", {
+        const response = fetch("{% url 'create_payment-intent' pedido.id %}", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         

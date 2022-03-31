@@ -31,10 +31,8 @@ class Acessoria(models.Model):
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
-    preco = models.FloatField(null=True, blank=True)
+    preco = models.CharField(max_length=5)
 
-    def formatado(self):
-        return "{:.2f}".format(self.preco)
 
     def __str__(self) -> str:
         return self.nome
@@ -42,6 +40,11 @@ class Produto(models.Model):
 class Pedidos(models.Model):
     pedido = models.ForeignKey(Acessoria, on_delete= models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete= models.CASCADE)
+    valor = models.CharField(max_length=5)
 
     def __str__(self) -> int:
         return str(self.id)
+
+
+    def formatado(self):
+        return "{:.2f}".format(self.preco)
