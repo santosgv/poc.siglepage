@@ -11,20 +11,19 @@ from django.views.decorators.csrf import csrf_exempt
 stripe.api_key= settings.STRIPE_SECRET_KEY
 
 def home(request):
-    produto =Produto.objects.get(id=1)
-    
-    return render(request,'home.html',{'produto':produto,'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    return render(request,'home.html')
 
 def cadastro(request):
     return render(request,'cadastro.html')
 
 @csrf_exempt
 def create_payment(request,id):
-    produto =Produto.objects.get(id=id)
+    produto =Produto.objects.get(id=id) 
+
    
     # Create a PaymentIntent with the order amount and currency
     intent = stripe.PaymentIntent.create(
-    amount= int(produto.preco /100),
+    amount= int(produto.preco),
     currency='BRL',
             
         )
@@ -50,13 +49,20 @@ def stripe_webhook(request):
         # Invalid signature
         return HttpResponse(status=400)
 
-    if event['type'] == 'checkout.session.completed':
+
+    print(event)
+    if event['type'] == 'charge.succeeded':
         session = event['data']['object']
-        # aqui cadastra oque fazer depois de aprvado a compra
-    return HttpResponse(status=200)
+
+        #mensagem =f'''
+        #Segue dados do Cadastro
+        #com sucesso
+        #'''
+        
+        #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=['vitormystore@gmail.com'])
+        return HttpResponse(status=200)
 
 def valida(request):
-    
     nome = request.POST.get('nome')
     email = request.POST.get('email')
     telefone = request.POST.get('telefone')
@@ -110,6 +116,7 @@ def valida(request):
     
     pedido =Pedidos(pedido=Cadastro, produto=produto)
     pedido.save()
+  
 
     mensagem =f'''
     Segue dados do Cadastro
@@ -118,7 +125,7 @@ def valida(request):
     {Cadastro.Nome_Fantasia}
     '''
     #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
-    return render(request,'pagamento.html',{'produto':produto,'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    return render(request,'pagamento.html',{'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
     #return HttpResponse(Cadastro.email)
 
 

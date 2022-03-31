@@ -14,7 +14,7 @@ Pagina Principal
       </p>
       <img
         src="{% static '/img/JPEG/JPEG2.jpg' %}"
-        width="60%"
+        width="30%"
         height="500px"
         alt=""
       />
@@ -55,7 +55,7 @@ Pagina Principal
                 </p>
               </div>
                 <a
-                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  href="{%url 'cadastro'%}"
                   class="btn btn-success"
                   >Mais informaçoes</a
                 >
@@ -86,7 +86,7 @@ Pagina Principal
                   </p>
                 </div>
                 <a
-                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  href="{%url 'alterar'%}"
                   class="btn btn-success"
                   >Mais informaçoes</a>
               </div>
@@ -116,7 +116,7 @@ Pagina Principal
                   </p>
                 </div>
                 <a
-                  href="https://wa.me/5531988018546?text=Ola+quero+comprar+um+produto+%21"
+                  href="{%url 'cancelar'%}"
                   class="btn btn-success"
                   >Mais informaçoes</a
                 >
@@ -124,7 +124,6 @@ Pagina Principal
             </div>
             </div>
           </div>
-        
       </div>
     </div>
     </section>

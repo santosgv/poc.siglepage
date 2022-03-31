@@ -1,4 +1,6 @@
 {% block 'body'%}
+
+{% load static %}
 <html>
   <head>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
@@ -48,7 +50,7 @@
 
       /* Buttons and links */
       button {
-        background: #5469d4;
+        background: #007e7a;
         font-family: Arial, sans-serif;
         color: #ffffff;
         border-radius: 4px;
@@ -151,10 +153,17 @@
   <body>
     
       <section>
+        <div class="text-center">
+        <img
+        src="{% static '/img/JPEG/JPEG.jpg' %}"
+        width="35%"
+        height="30%"
+        alt=""
+      />
         <div class="product">
           <div class="description">
-            <h3>{{produto.nome}}</h3>
-            <h5>R$ {{produto.formatado}}</h5>
+            <h1>{{produto.nome}}</h1>
+            <h1>R$ {{produto.formatado}}</h1>
           </div>
         </div>
         <form id="payment-form">
@@ -167,6 +176,7 @@
           </button>
           <div id="payment-message" class="hidden"></div>
         </form>
+      </div>
       </section>
     
     {% csrf_token %}
@@ -176,84 +186,46 @@
     
     let elements;
 
-    initialize();
-    checkStatus();
 
-    document
-      .querySelector("#payment-form")
-      .addEventListener("submit", handleSubmit);
 
-    // Fetches a payment intent and captures the client secret
-    async function initialize() {
-      const response = await fetch("{% url 'create_payment-intent' produto.id %}", {
+      elements = stripe.elements();
+
+      const paymentElement = elements.create("card");
+      paymentElement.mount("#payment-element");
+
+      var form =document.getElementById('payment-form')
+      form.addEventListener('submit',function(event){
+        setLoading(true)
+        event.preventDefault()
+
+        const response = fetch("{% url 'create_payment-intent' produto.id %}", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         
-      });
-      const { clientSecret } = await response.json();
+      })
+      .then(function(result){
+        return result.json()
 
-      const appearance = {
-        theme: 'stripe',
-      };
-      elements = stripe.elements({ appearance, clientSecret });
+      })
+      .then(function(data){
+            stripe.confirmCardPayment(data.clientSecret,{
+              payment_method:{
+                card:paymentElement
+              }
+            })
+              .then(function(result){
+                setLoading(false)
+                if(result.error){
+                  showMessage('Ocorreu um erro')
+                }else{
+                  showMessage('Compra finalizada com sucesso, Verifique seu Email')
+                  paymentElement.clear()
+                }
+              })
+      })
 
-      const paymentElement = elements.create("payment");
-      paymentElement.mount("#payment-element");
-    }
+      })
 
-    async function handleSubmit(e) {
-      e.preventDefault();
-      setLoading(true);
-
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          // Make sure to change this to your payment completion page
-          return_url: "http://127.0.0.1:8000" +"{url 'home'}",
-        },
-      });
-
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Otherwise, your customer will be redirected to
-      // your `return_url`. For some payment methods like iDEAL, your customer will
-      // be redirected to an intermediate site first to authorize the payment, then
-      // redirected to the `return_url`.
-      if (error.type === "card_error" || error.type === "validation_error") {
-        showMessage(error.message);
-      } else {
-        showMessage("An unexpected error occured.");
-      }
-
-      setLoading(false);
-    }
-
-    // Fetches the payment intent status after payment submission
-    async function checkStatus() {
-      const clientSecret = new URLSearchParams(window.location.search).get(
-        "payment_intent_client_secret"
-      );
-
-      if (!clientSecret) {
-        return;
-      }
-
-      const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
-      switch (paymentIntent.status) {
-        case "succeeded":
-          showMessage("Pagamento Realizado com Sucesso !");
-          break;
-        case "processing":
-          showMessage("Seu pagamento esta em Processamento.");
-          break;
-        case "requires_payment_method":
-          showMessage("Seu pagamento não foi bem-sucedido, tente novamente.");
-          break;
-        default:
-          showMessage("Something went wrong.");
-          break;
-      }
-    }
 
     // ------- UI helpers -------
 
