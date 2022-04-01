@@ -18,14 +18,64 @@ def cadastro(request):
 
 @csrf_exempt
 def create_payment(request,id):
-    pedido =Pedidos.objects.get(id=id)
-    
+    produto =Produto.objects.get(id=id)
+
+    id_prod =json.loads(request.body)['produto']
+    id_cadastro=json.loads(request.body)['id_cadastro']
+    nome = json.loads(request.body)['nome']
+    email = json.loads(request.body)['email']
+    telefone = json.loads(request.body)['telefone']
+    cpf = json.loads(request.body)['cpf']
+    rg = json.loads(request.body)['rg']
+    ExpeditorRG = json.loads(request.body)['ExpeditorRG']
+    uf_rg = json.loads(request.body)['uf_rg']
+    Data_Nascimento = json.loads(request.body)['Data_Nascimento']
+    Nome_Mae = json.loads(request.body)['Nome_Mae']
+    Banco = json.loads(request.body)['Banco']
+    Imposto = json.loads(request.body)['Imposto']
+    Nome_Fantasia = json.loads(request.body)['Nome_Fantasia']
+    Capitao_Inicial = json.loads(request.body)['Capitao_Inicial']
+    OcupacaoPrincipal = json.loads(request.body)['OcupacaoPrincipal']
+    OcupacaoSegundario = json.loads(request.body)['OcupacaoSegundario']
+    cep = json.loads(request.body)['cep']
+    Rua = json.loads(request.body)['Rua']
+    Numero = json.loads(request.body)['Numero']
+    Complemento = json.loads(request.body)['Complemento']
+    Bairro = json.loads(request.body)['Bairro']
+    Cidade = json.loads(request.body)['Cidade']
+    Estado = json.loads(request.body)['Estado']
+
 
     # Create a PaymentIntent with the order amount and currency
     intent = stripe.PaymentIntent.create(
-    amount= int(pedido.id),
+    amount= int(produto.preco *100),
     currency='BRL',
-            
+    metadata={
+        'id_prod':id_prod,
+        'id_cadastro':id_cadastro,
+        'nome':nome,
+        'email':email,
+        'telefone':telefone,
+        'cpf':cpf,
+        'rg':rg,
+        'ExpeditorRG':ExpeditorRG,
+        'uf_rg':uf_rg,
+        'Data_Nascimento':Data_Nascimento,
+        'Nome_Mae':Nome_Mae,
+        'Banco':Banco,
+        'Imposto':Imposto,
+        'Nome_Fantasia':Nome_Fantasia,
+        'Capitao_Inicial':Capitao_Inicial,
+        'OcupacaoPrincipal':OcupacaoPrincipal,
+        'OcupacaoSegundario':OcupacaoSegundario,
+        'cep':cep,
+        'Rua':Rua,
+        'Numero':Numero,
+        'Complemento':Complemento,
+        'Bairro':Bairro,
+        'Cidade':Cidade,
+        'Estado':Estado,
+    }   
         )
     return JsonResponse({
         'clientSecret': intent['client_secret']
@@ -49,19 +99,45 @@ def stripe_webhook(request):
         # Invalid signature
         return HttpResponse(status=400)
 
-
-    print(event)
+    
+  
     if event['type'] == 'charge.succeeded':
         session = event['data']['object']
-        pedido =Pedidos(produto_id=session['metadata']['id_produto'])
-
-        #mensagem =f'''
-        #Segue dados do Cadastro
-        #com sucesso
-        #'''
+    
+        #pedido = Pedidos(Acessoria.objects.filter(pedido=session['metadata']['id_cadastro']), produto =Produto.objects.get(id=session['metadata']['id_prod']) ,status=event['type'])
+        #pedido.save
         
-        #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=['vitormystore@gmail.com'])
-        return HttpResponse(status=200)
+        print(session)
+        mensagem =f'''
+        Segue dados do Cadastro no MEI CERTO
+        {session['metadata']['id_prod']}
+        {session['metadata']['id_cadastro']}
+        {session['metadata']['id_prod']}
+        {session['metadata']['nome']}
+        {session['metadata']['email']}
+        {session['metadata']['telefone']}
+        {session['metadata']['cpf']}
+        {session['metadata']['rg']}
+        {session['metadata']['ExpeditorRG']}
+        {session['metadata']['uf_rg']}
+        {session['metadata']['Data_Nascimento']}
+        {session['metadata']['Nome_Mae']}
+        {session['metadata']['Banco']}
+        {session['metadata']['Imposto']}
+        {session['metadata']['Nome_Fantasia']}
+        {session['metadata']['Capitao_Inicial']}
+        {session['metadata']['OcupacaoPrincipal']}
+        {session['metadata']['OcupacaoSegundario']}
+        {session['metadata']['cep']}
+        {session['metadata']['Rua']}
+        {session['metadata']['Numero']}
+        {session['metadata']['Complemento']}
+        {session['metadata']['Bairro']}
+        {session['metadata']['Cidade']}
+        {session['metadata']['Estado']}
+        '''
+
+        return send_mail('Pagamento realizado com sucesso',mensagem,'santosgomesv@gmail.com',recipient_list=[session['metadata']['email'],'precoflix@gmail.com'])
 
 def valida(request):
     nome = request.POST.get('nome')
@@ -115,19 +191,8 @@ def valida(request):
 
     produto =Produto.objects.get(id=1)
    
-    pedido =Pedidos(pedido=Cadastro, produto=produto)
-    pedido.save()
-  
+    return render(request,'pagamento.html',{'cadastro':Cadastro,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
-    mensagem =f'''
-    Segue dados do Cadastro
-    {Cadastro.nome}
-    {Cadastro.email}
-    {Cadastro.Nome_Fantasia}
-    '''
-    #send_mail('Pagamento realizado',mensagem,'santosgomesv@gmail.com',recipient_list=[email])
-    return render(request,'pagamento.html',{'pedido':pedido,'cadastro':Cadastro,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
-    #return HttpResponse(Cadastro.email)
 
 
 def alterar(request):

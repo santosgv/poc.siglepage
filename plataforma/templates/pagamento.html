@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %} 
 {% block 'body'%}
 <html>
   <head>
@@ -18,9 +19,8 @@
       />
         <div class="product">
           <div class="description">
-            <h1>{{pedido.pedido}}</h1>
-            <h1>{{pedido.produto}}</h1>
-            <h1>{{pedido.valor}}</h1>
+            <h1>{{produto.nome}}</h1>
+            <h1>{{produto.preco|intcomma}}</h1>
           </div>
         </div>
         <form id="payment-form">
@@ -55,10 +55,35 @@
         setLoading(true)
         event.preventDefault()
 
-        const response = fetch("{% url 'create_payment-intent' pedido.id %}", {
+        const response = fetch("{% url 'create_payment-intent' produto.id %}", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        
+        body: JSON.stringify({produto:"{{ produto.id }}",
+                              id_cadastro:"{{ cadastro.id }}",
+                              nome: "{{ cadastro.nome }}",
+                              email: "{{cadastro.email}}",
+                              telefone: "{{cadastro.telefone}}",
+                              cpf: "{{cadastro.cpf}}",
+                              rg: "{{cadastro.rg}}",
+                              ExpeditorRG: "{{cadastro.ExpeditorRG}}",
+                              uf_rg: "{{cadastro.uf_rg}}",
+                              Data_Nascimento: "{{cadastro.Data_Nascimento}}",
+                              Nome_Mae: "{{cadastro.Nome_Mae}}",
+                              Banco: "{{cadastro.Banco}}",
+                              Imposto: "{{cadastro.Imposto}}",
+                              Nome_Fantasia: "{{cadastro.Nome_Fantasia}}",
+                              Capitao_Inicial: "{{cadastro.Capitao_Inicial}}",
+                              OcupacaoPrincipal: "{{cadastro.OcupacaoPrincipal}}",
+                              OcupacaoSegundario: "{{cadastro.OcupacaoSegundario}}",
+                              cep: "{{cadastro.cep}}",
+                              Rua: "{{cadastro.Rua}}",
+                              Numero: "{{cadastro.Numero}}",
+                              Complemento: "{{cadastro.Complemento}}",
+                              Bairro: "{{cadastro.Bairro}}",
+                              Cidade: "{{cadastro.Cidade}}",
+                              Estado: "{{cadastro.Estado}}",
+
+      })
       })
       .then(function(result){
         return result.json()
