@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 stripe.api_key= settings.STRIPE_SECRET_KEY
 
 def home(request):
-    return render(request,'home.html')
+    produto=Produto.objects.get(id=1)
+    return render(request,'home.html',{'produto':produto})
 
 def cadastro(request):
     return render(request,'cadastro.html')
