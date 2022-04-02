@@ -7,5 +7,7 @@ admin.site.register(Produto)
 
 @admin.register(Pedidos)
 class Pedidos(admin.ModelAdmin):
-    list_display = ('pedido', 'produto')
-    readonly_fields=('pedido','produto',)
+    search_fields = ('id',)
+    list_display = ('pedido', 'produto','status')
+    readonly_fields=('pedido','produto','status')
+    list_filter = ('status',)

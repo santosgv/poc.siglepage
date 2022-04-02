@@ -104,40 +104,19 @@ def stripe_webhook(request):
   
     if event['type'] == 'charge.succeeded':
         session = event['data']['object']
-    
-        #pedido = Pedidos(Acessoria.objects.filter(pedido=session['metadata']['id_cadastro']), produto =Produto.objects.get(id=session['metadata']['id_prod']) ,status=event['type'])
-        #pedido.save
         
-        print(session)
+        
+        cadastro =Acessoria.objects.get(id=session['metadata']['id_cadastro'])
+        prod =Produto.objects.get(id=1)
+    
+        pedido = Pedidos(pedido=cadastro, produto =prod,status='Pagamento aprovado')
+        pedido.save()
+        
+        
         mensagem =f'''
-        Segue dados do Cadastro no MEI CERTO
-        {session['metadata']['id_prod']}
-        {session['metadata']['id_cadastro']}
-        {session['metadata']['id_prod']}
-        {session['metadata']['nome']}
-        {session['metadata']['email']}
-        {session['metadata']['telefone']}
-        {session['metadata']['cpf']}
-        {session['metadata']['rg']}
-        {session['metadata']['ExpeditorRG']}
-        {session['metadata']['uf_rg']}
-        {session['metadata']['Data_Nascimento']}
-        {session['metadata']['Nome_Mae']}
-        {session['metadata']['Banco']}
-        {session['metadata']['Imposto']}
-        {session['metadata']['Nome_Fantasia']}
-        {session['metadata']['Capitao_Inicial']}
-        {session['metadata']['OcupacaoPrincipal']}
-        {session['metadata']['OcupacaoSegundario']}
-        {session['metadata']['cep']}
-        {session['metadata']['Rua']}
-        {session['metadata']['Numero']}
-        {session['metadata']['Complemento']}
-        {session['metadata']['Bairro']}
-        {session['metadata']['Cidade']}
-        {session['metadata']['Estado']}
+        Segue numeo do pedido do Cadastro no MEI CERTO
+        {pedido.id}
         '''
-
         return send_mail('Pagamento realizado com sucesso',mensagem,'santosgomesv@gmail.com',recipient_list=[session['metadata']['email'],'precoflix@gmail.com'])
 
 def valida(request):
