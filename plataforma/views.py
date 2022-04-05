@@ -51,6 +51,7 @@ def create_payment(request,id):
     intent = stripe.PaymentIntent.create(
     amount= int(produto.preco *100),
     currency='BRL',
+    receipt_email=email,
     metadata={
         'id_prod':id_prod,
         'id_cadastro':id_cadastro,
@@ -114,7 +115,7 @@ def stripe_webhook(request):
         
         
         mensagem =f'''
-        Segue numeo do pedido do Cadastro no MEI CERTO
+        Segue numero do pedido do Cadastro no MEI CERTO
         {pedido.id}
         '''
         return send_mail('Pagamento realizado com sucesso',mensagem,'santosgomesv@gmail.com',recipient_list=[session['metadata']['email'],'precoflix@gmail.com'])

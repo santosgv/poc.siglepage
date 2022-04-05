@@ -98,7 +98,7 @@
               .then(function(result){
                 setLoading(false)
                 if(result.error){
-                  showMessage('Ocorreu um erro')
+                  showMessage('Os dados inseridos estao incorretos ou Saldo insuficiente')
                 }else{
                   showMessage('Compra finalizada com sucesso, Verifique seu Email')
                   paymentElement.clear()

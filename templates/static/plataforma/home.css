@@ -2,6 +2,7 @@
     --VERDE:#007e7a;
     --cinza:#808080;
     --branco:#fff;
+    --preto:rgb(10, 10, 10);
 }
 
 *{
@@ -23,9 +24,20 @@ div .card{
   
 
 .textocor{
-    color: var(--cinza);
+    color: var(--preto);
 }
 
 p {
     color: var(--VERDE);
+}
+
+
+.textprincipal{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.textprincipal p {
+    padding-left: 20%;
 }
