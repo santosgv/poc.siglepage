@@ -5,11 +5,17 @@ Pagina Principal
 {%endblock %} 
 {% block 'body'%}
 <main>
-  <div class="img-principal text-center">
-    <div class="row">
+  <div class="img-principal">
+    <div class="row card-principal">
       <div class="col-md-6 textprincipal">
           <p class="text-center">Contrate a Assessoria e Registre agora seu CNPJ MEI. Aproveite as
-            vantagens de ser um Microempreendedor Individual.</p>
+            vantagens de ser um Microempreendedor Individual.
+          <br>
+          <br>
+          <a href="{%url 'cadastro'%}"
+                  class="btn btn-success"
+                  >Faça aqui seu CNPJ MEI</a>
+          </p>
       </div>
       <div class="col-md-6">
         <img src="{% static '/img/kav-desktop.png' %}" width="100%" alt="...">
