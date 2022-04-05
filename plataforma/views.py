@@ -184,8 +184,11 @@ def cancelar(request):
 def declaracao(request):
     return render(request,'declaracao.html')
 
-def Sucesso(request):
-    return render(request,'Sucesso.html')
+def duvidaativa(request):
+    return render(request,'duvidaativa.html')
 
-def Erro(request):
-    return render(request,'Erro.html')
+def educacao(request):
+    return render(request,'educacao.html')
+
+def faleconosco(request):
+    return render(request,'faleconosco.html')

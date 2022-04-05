@@ -6,21 +6,23 @@ Pagina Principal
 {% block 'body'%}
 <main>
   <div class="img-principal text-center">
-    <div class="container-fluid principal">
-      <div class="textocor">
-      <h3>Faça aqui seu CNPJ MEI</h3>
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <div class="card-body align-text-bottom">
+          <br>
+          <br>
+          <br>
+          <br>
+          <h5 class="card-title align-text-bottom">Faça seu CNPJ MEI</h5>
+          <p class="align-text-bottom ">Contrate a Assessoria e Registre agora seu CNPJ MEI. Aproveite as
+            vantagens de ser um Microempreendedor Individual.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static '/img/kav-desktop.png' %}" width="80%" alt="...">
+      </div>
     </div>
-      <p>
-        Contrate a Assessoria e Registre agora seu CNPJ MEI. Aproveite as
-        vantagens de ser um Microempreendedor Individual.
-      </p>
-      <img
-        src="{% static '/img/JPEG/JPEG2.jpg' %}"
-        width="30%"
-        height="500px"
-        alt=""
-      />
-    </div>
+ 
     <br />
     <br />
     <div class="text-center">
@@ -41,8 +43,6 @@ Pagina Principal
                 </div>
                 <div class="text-center">
                 <p class="card-text">
-                  <h5 class="card-title"><strong>{{produto.nome}}</strong></h5>
-                  <strong><p>{{produto.preco}}</p></strong>
                  <strong>Negócio Legal</strong>
                  <br>
                   Você terá uma empresa com CNPJ MEI cumprindo todas as obrigações legais por um baixo custo mensal.
