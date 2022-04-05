@@ -30,6 +30,16 @@ li a{
     margin: 15px;
 }
 
+.ativo{
+        cursor: pointer;
+        border: none;
+        border-radius: 20px;
+        background: var(--VERDECIANO);
+}
+.ativo div:hover{
+    background: var(--branco);
+}
+
 div .card{
     padding: 5px;
     margin: 10px;
@@ -45,13 +55,8 @@ div .card{
 }
 
 .row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    /* margin-right: -15px; */
-    /* margin-left: -15px; */
+   justify-items: center;
+
 }
   
   .card-principal{
