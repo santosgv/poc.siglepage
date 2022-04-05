@@ -3,13 +3,29 @@
     --cinza:#808080;
     --branco:#fff;
     --preto:rgb(10, 10, 10);
+    --cinzaclaro:#F8F8FF;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--branco);
+   
+}
+
+body , main{
+    background-color: var(--cinzaclaro);
+}
+
+nav div ,li ,a{
+    background-color: var(--cinzaclaro);
+}
+
+
+
+
+li a{
+    margin: 15px;
 }
 
 div .card{
@@ -29,6 +45,7 @@ div .card{
 
 p {
     color: var(--VERDE);
+    font-family: 'Arvo', serif;
 }
 
 
@@ -39,5 +56,5 @@ p {
 }
 
 .textprincipal p {
-    padding-left: 20%;
+    padding-left: 5%;
 }
