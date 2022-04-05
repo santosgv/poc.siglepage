@@ -1,5 +1,6 @@
 :root{
     --VERDE:#007e7a;
+    --VERDECIANO:#04b6a8;
     --cinza:#808080;
     --branco:#fff;
     --preto:rgb(10, 10, 10);
@@ -32,6 +33,11 @@ div .card{
     padding: 5px;
     margin: 10px;
     align-items: center;
+
+}
+
+.btn-div{
+    margin-bottom: 5px;
 }
 
 .row{
@@ -40,11 +46,15 @@ div .card{
   
 
 .textocor{
-    color: var(--preto);
+    color: var(--VERDECIANO);
+}
+
+.paragrafo{
+    color: var(--cinza);
 }
 
 p {
-    color: var(--VERDE);
+    color: var(--VERDECIANO);
     font-family: 'Arvo', serif;
 }
 
