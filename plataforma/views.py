@@ -185,8 +185,8 @@ def cancelar(request):
 def declaracao(request):
     return render(request,'declaracao.html')
 
-def duvidaativa(request):
-    return render(request,'duvidaativa.html')
+def dividaativa(request):
+    return render(request,'dividaativa.html')
 
 def educacao(request):
     return render(request,'educacao.html')
