@@ -30,15 +30,15 @@ li a{
     margin: 15px;
 }
 
+
+
+
 .ativo:hover{
     cursor: pointer;
     border: none;
     border-radius: 20px;
     background-color: var(--VERDECIANO);
-    font: red;
-    
 }
-
 
 
 div .card{
