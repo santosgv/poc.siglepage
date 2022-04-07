@@ -30,15 +30,16 @@ li a{
     margin: 15px;
 }
 
-.ativo{
-        cursor: pointer;
-        border: none;
-        border-radius: 20px;
-        background: var(--VERDECIANO);
+.ativo:hover{
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--VERDECIANO);
+    font: red;
+    
 }
-.ativo div:hover{
-    background: var(--branco);
-}
+
+
 
 div .card{
     padding: 5px;
