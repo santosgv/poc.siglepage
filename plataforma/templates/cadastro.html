@@ -6,29 +6,61 @@ Cadastro
 <body>
     <div class="container">
       <div class="text-center">
-        <h1>Abrir seu CNPJ MEI</h1>
+        <h1 class="textocor">Abrir seu CNPJ MEI</h1>
         </div>
         <form method="POST" action="{% url 'valida'%}">{% csrf_token %}
           <div class="form-group">
             <label for="exampleInputEmail1">NOME</label>
-            <input type="text" class="form-control" name="nome" placeholder="Ex .: Meu nome">
-
+            <input type="text" class="form-control" name="nome" required placeholder="Ex .: Meu nome">
+          </div>
+		  <div class="form-group">
+            <label>CPF</label>
+            <input type="text" class="form-control" name="cpf" required placeholder="Ex .: 000000">
           </div>
           <div class="form-group">
             <label>EMAIL</label>
-            <input type="email" class="form-control" name="email" placeholder="Ex .: email@gmail.com">
+            <input type="email" class="form-control" name="email" required placeholder="Ex .: email@gmail.com">
           </div>
-          <div class="form-group">
+
+		  <div class="form-group">
+            <label>EMAIL (Opcional)</label>
+            <input type="email" class="form-control" name="email2" placeholder="Ex .: opcional@gmail.com">
+          </div>
+		  <div class="form-row">
+          <div class="form-group col-md-6">
             <label>TELEFONE</label>
-            <input type="text" class="form-control" name="telefone" placeholder="Ex .: (31) 91234 5678">
+            <input type="text" class="form-control" name="telefone" required placeholder="Ex .: (31) 91234 5678">
           </div>
-          
-          <div class="form-group">
-            <label>CPF</label>
-            <input type="text" class="form-control" name="cpf" placeholder="Ex .: 000000">
+
+		  <div class="form-group col-md-6">
+            <label>Celular</label>
+            <input type="text" class="form-control" name="Celular" required placeholder="Ex .: (31) 91234 5678">
           </div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" value="1" id="termo1" required>
+			  <label class="form-check-label">
+			<p class="paragrafo">	Autorizo o MeiCerto a validar as informaçoes no Portal do Governo (gov.br) e declaro que as informaçoes preenchidas por mim sao verdadeiras. </p>
+			  </label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="2" id="termo2" required>
+				<label class="form-check-label">
+				<p class="paragrafo">	Estou ciente que este e um serviço opcional e pago, prestado pela empresa MeiCerto.</p>
+				</label>
+			  </div>
+			  <div class="form-check">
+				<input class="form-check-input" type="checkbox" value="3" id="termo3" required>
+				<label class="form-check-label">
+				<p class="paragrafo">	Declaro estar de acordo com os <a href="TERMOS E CONDIÇÕES DE USO DOS SERVIÇOS.docx" download="Termos & Condiçôes">Termos & Condiçôes.</a></p>
+				</label>
+			  </div>
+		  </div>
+		  <hr>
           <div class="container text-center">
-          <button type="button" class="btn btn-primary text" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-success text" data-toggle="modal" data-target="#exampleModal">
             Continuar
           </button>
           </div>
@@ -46,11 +78,11 @@ Cadastro
                 <div class="modal-body">
                   <div class="form-group">
                     <label>RG</label>
-                    <input type="text" class="form-control" name="rg" placeholder="Numero da RG">
+                    <input type="text" class="form-control" name="rg" required placeholder="Numero da RG">
                   </div>
                   <div class="form-group">
                     <label>Expedidor RG</label>
-                    <input type="text" class="form-control" name="ExpeditorRG" placeholder="Expedidor RG">
+                    <input type="text" class="form-control" name="ExpeditorRG" required placeholder="Expedidor RG">
                   </div>
                   <div class="form-group">
                     <label>UF RG</label>
@@ -87,46 +119,46 @@ Cadastro
                   </div>
                   <div class="form-group">
                     <label>Data Nascimento</label>
-                    <input type="date" class="form-control" name="Data_Nascimento" placeholder="Data Nascimento">
+                    <input type="date" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento">
                   </div>
                   <div class="form-group">
                     <label>Nome Mae</label>
-                    <input type="text" class="form-control" name="Nome_Mae" placeholder="Nome Mae">
+                    <input type="text" class="form-control" name="Nome_Mae" required placeholder="Nome Mae">
                   </div>
                   <div class="form-group">
                   <label>Possui conta de banco ?</label>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Banco" id="Banco" value="S">
+                    <input class="form-check-input" type="radio" name="Banco" required id="Banco" value="S">
                     <label class="form-check-label" for="inlineRadio1">Sim</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Banco" id="Banco" value="N">
+                    <input class="form-check-input" type="radio" name="Banco" required id="Banco" value="N">
                     <label class="form-check-label" for="inlineRadio2">Nao</label>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Ja declarou imposto ?</label>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Imposto" id="Imposto" value="S">
+                    <input class="form-check-input" type="radio" name="Imposto" required id="Imposto" value="S">
                     <label class="form-check-label" for="inlineRadio1">Sim</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Imposto" id="Imposto" value="N">
+                    <input class="form-check-input" type="radio" name="Imposto" required id="Imposto" value="N">
                     <label class="form-check-label" for="inlineRadio2">Nao</label>
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Nome Fantasia</label>
-                    <input type="text" class="form-control" name="Nome_Fantasia" placeholder="Nome Fantasia">
+                    <input type="text" class="form-control" name="Nome_Fantasia" required placeholder="Nome Fantasia">
                   </div>
                   <div class="form-group">
                     <label>Capitao Inicial</label>
-                    <input type="text" class="form-control" name="Capitao_Inicial" placeholder="Ex .: 2.000">
+                    <input type="text" class="form-control" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
                   </div>
                   <div class="form-group">
                   <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Ocupacao Principal</label>
-                    <select class="custom-select mr-sm-2" name="OcupacaoPrincipal" id="inlineFormCustomSelect">
+                    <select class="custom-select mr-sm-2" name="OcupacaoPrincipal" required id="inlineFormCustomSelect">
                       <option selected>Escolha uma Opcao...</option>
                       <option class="select2-results__option" id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE" role="option" aria-selected="false" data-select2-id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE">ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE</option>
 	<option class="select2-results__option" id="select2-ocupacao_principal-result-134j-ACABADOR(A) DE CALÇADOS INDEPENDENTE" role="option" aria-selected="false" data-select2-id="select2-ocupacao_principal-result-134j-ACABADOR(A) DE CALÇADOS INDEPENDENTE">ACABADOR(A) DE CALÇADOS INDEPENDENTE</option>
@@ -600,7 +632,7 @@ Cadastro
                 <div class="form-group">
                   <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Ocupacao Segundario</label>
-                    <select class="custom-select mr-sm-2" name="OcupacaoSegundario" id="inlineFormCustomSelect">
+                    <select class="custom-select mr-sm-2" name="OcupacaoSegundario" required id="inlineFormCustomSelect">
                       <option selected>Escolha uma Opcao...</option>
                       <option class="select2-results__option" id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE" role="option" aria-selected="false" data-select2-id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE">ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE</option>
 	<option class="select2-results__option" id="select2-ocupacao_principal-result-134j-ACABADOR(A) DE CALÇADOS INDEPENDENTE" role="option" aria-selected="false" data-select2-id="select2-ocupacao_principal-result-134j-ACABADOR(A) DE CALÇADOS INDEPENDENTE">ACABADOR(A) DE CALÇADOS INDEPENDENTE</option>
@@ -1077,28 +1109,28 @@ Cadastro
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <label>CEP</label>
-                    <input type="text" class="form-control" name="cep" placeholder="Cep">
+                    <input type="text" class="form-control" name="cep" required placeholder="Cep">
                   </div>
                   <div class="form-group">
                     <label>Rua</label>
-                    <input type="text" class="form-control" name="Rua" placeholder="Rua">
+                    <input type="text" class="form-control" name="Rua" required placeholder="Rua">
                   </div>
                   <div class="col-md-4 mb-3">
                     <label>Numero</label>
-                    <input type="text" class="form-control" name="Numero" placeholder="Numero">
+                    <input type="text" class="form-control" name="Numero" required placeholder="Numero">
                   </div>
                   <div class="col-md-6 mb-3">
                     <label>Complemento</label>
-                    <input type="text" class="form-control" name="Complemento" placeholder="Complemento">
+                    <input type="text" class="form-control" name="Complemento" required placeholder="Complemento">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Bairro</label>
-                    <input type="text" class="form-control" name="Bairro" placeholder="Bairro">
+                    <input type="text" class="form-control" name="Bairro" required placeholder="Bairro">
                   </div>
                   <div class="form-group">
                     <label>Cidade</label>
-                    <input type="text" class="form-control" name="Cidade" placeholder="Cidade">
+                    <input type="text" class="form-control" name="Cidade" required placeholder="Cidade">
                   </div>
                   <div class="form-group">
                     <label>Estado</label>
@@ -1137,7 +1169,7 @@ Cadastro
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Continuar</button>
+                  <button type="submit" class="btn btn-success">Continuar</button>
                 </div>
               </div>
             </div>
