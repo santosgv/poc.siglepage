@@ -6,16 +6,16 @@ Cadastro
 <body>
     <div class="container">
       <div class="text-center">
-        <h1 class="textocor">Abrir seu CNPJ MEI</h1>
+        <h1 class="textocor">formali-se!</h1>
         </div>
         <form method="POST" action="{% url 'valida'%}">{% csrf_token %}
           <div class="form-group">
             <label for="exampleInputEmail1">NOME</label>
-            <input type="text" class="form-control" name="nome" required placeholder="Ex .: Meu nome">
+            <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex .: Meu nome">
           </div>
 		  <div class="form-group">
             <label>CPF</label>
-            <input type="text" class="form-control" name="cpf" required placeholder="Ex .: 000000">
+            <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Ex .: 000000">
           </div>
           <div class="form-group">
             <label>EMAIL</label>
@@ -42,7 +42,7 @@ Cadastro
 			<div class="form-check">
 			  <input class="form-check-input" type="checkbox" value="1" id="termo1" required>
 			  <label class="form-check-label">
-			<p class="paragrafo">	Autorizo o MeiCerto a validar as informaçoes no Portal do Governo (gov.br) e declaro que as informaçoes preenchidas por mim sao verdadeiras. </p>
+			<p class="paragrafo">Autorizo o MeiCerto a validar as informaçoes no Portal do Governo (gov.br) e declaro que as informaçoes preenchidas por mim sao verdadeiras. </p>
 			  </label>
 			</div>
 			<div class="form-check">
@@ -60,7 +60,7 @@ Cadastro
 		  </div>
 		  <hr>
           <div class="container text-center">
-          <button type="button" class="btn btn-success text" data-toggle="modal" data-target="#exampleModal">
+          <button onclick="nomeEmpresa()" type="button" class="btn btn-success text" data-toggle="modal" data-target="#exampleModal">
             Continuar
           </button>
           </div>
@@ -78,41 +78,33 @@ Cadastro
                 <div class="modal-body">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-						  <label for="inputEmail4">CNPJ</label>
-						  <input type="email" class="form-control" id="inputEmail4" placeholder="CNPJ">
-						</div>
-						<div class="form-group col-md-6">
 							<label>Data Nascimento</label>
 							<input type="date" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento">
 						  </div>
 					  </div>
 					  <div class="form-group">
 						<label for="inputAddress2">NOME EMPRESARIAL</label>
-						<input type="text" class="form-control" id="inputAddress2" disabled>
+						<input type="text" class="form-control" id="nomeempresarial" readonly>
 					  </div>
 					  <div class="form-row">
-						<div class="form-group col-md-8">
-						  <label for="inputCity">NOME DO EMPRESARIO</label>
-						  <input type="text" class="form-control" id="inputCity">
-						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 						  <label for="inputState">Nacionalidade</label>
 						  <select id="inputState" class="form-control">
 							  <option>Brasileiro</option>
 							  
 						  </select>
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 						  <label for="inputZip">SEXO</label>
 						  <select id="inputState" class="form-control">
 							  <option>Masculino</option>
 							  <option>Feminino</option>
 						  </select>
 						</div>
-						<div class="form-group col-md-8">
-						  <label>NOME DA MAE</label>
-						  <input type="text" class="form-control" id="inputAddress2">
-						</div>
+					  </div>
+					  <div class="form-group">
+						<label>NOME DA MAE</label>
+						<input type="text" class="form-control" id="inputAddress2">
 					  </div>
 					  <hr>
 					  <div class="modal-body">
@@ -2551,8 +2543,7 @@ Cadastro
 								</div>
 							  </div>
 							  <label for="">Ocupacao Segundaria</label>
-							  <select class="custom-select" size="15" multiple>
-								
+							  <select id="userRequest_activity" class="custom-select" size="15" multiple>
 									<option class="select2-results__option"
 									  id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE"
 									  role="option" aria-selected="false"
@@ -5092,6 +5083,31 @@ Cadastro
 						});
 					});
 				</script>
+				  <script type="text/javascript">
+					$(document).ready(function() {
+			
+					  var last_valid_selection = null;
+			
+					  $('#userRequest_activity').change(function(event) {
+			
+						if ($(this).val().length > 10) {
+			
+						  $(this).val(last_valid_selection);
+						} else {
+						  last_valid_selection = $(this).val();
+						}
+					  });
+					});
+					</script>
+					<script>
+						function nomeEmpresa(){
+					var nome=document.getElementById('nome').value;
+					var cpf=document.getElementById('cpf').value;
+					var nomeempresarial = nome + cpf ;
+					var nomeimp =document.getElementById('nomeempresarial');
+					nomeimp.innerHTML = nomeempresarial
+						}
+					</script>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-success">Continuar</button>
