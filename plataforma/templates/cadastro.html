@@ -4967,35 +4967,34 @@ Cadastro
 			  
 									  <div class="form-row">
 										  <div class="col-md-4 mb-3">
-											  <label>CEP</label>
-											  <input type="text" class="form-control" name="cep" required placeholder="Cep">
+											  <label for="cep">CEP</label>
+											  <input type="text" class="form-control" id="cep" name="cep">
 										  </div>
 										  <div class="col-md-4 mb-4">
-											  <label>Rua</label>
-											  <input type="text" class="form-control" name="Rua" required placeholder="Rua">
+											  <label for="logradouro">logradouro</label>
+											  <input type="text" class="form-control" id="logradouro" name="logradouro" required placeholder="logradouro">
 										  </div>
 										  <div class="col-md-4 mb-3">
-											  <label>Numero</label>
-											  <input type="text" class="form-control" name="Numero" required placeholder="Numero">
+											  <label for="numero">Numero</label>
+											  <input type="text" class="form-control" id="numero" name="numero" required placeholder="Numero">
 										  </div>
 										  <div class="col-md-2 mb-2">
 											  <label>Complemento</label>
-											  <input type="text" class="form-control" name="Complemento" required
-												  placeholder="Complemento">
+											  <input type="text" class="form-control" id="complemento" name="Complemento" required>
 										  </div>
-							<div class="col-md-4 mb-3">
+										<div class="col-md-4 mb-3">
 											  <label>Bairro</label>
-											  <input type="text" class="form-control" name="bairro" required
+											  <input type="text" class="form-control" id="bairro" name="bairro" required
 												  placeholder="Complemento">
 										  </div>
 							<div class="col-md-4 mb-3">
 											  <label>Cidade</label>
 											  <input type="text" class="form-control" name="Cidade" required
-												  placeholder="Complemento">
+												  placeholder="Cidade">
 										  </div>
 							<div class="col-md-2 mb-2">
 											  <label>Estado</label>
-											  <select class="form-control" name="Estado">
+											  <select class="form-control" id="uf" name="uf">
 								<option>AC</option>
 								<option>AL</option>
 								<option>AP</option>
@@ -5055,7 +5054,7 @@ Cadastro
 						  <div class="form-check">
 							<input class="form-check-input" type="checkbox" value="1" id="termo1" required>
 							<label class="form-check-label">
-							  <p class="paragrafo"> Declaro, sob as penas da lei, que conheço e atendo os requisitos legais exigidos pelo Estado e pela Prefeitura do Município para a dispensa da emissão do Alvará e Licença de Funcionamento, compreendidos os aspectos sanitários, ambientais, tributários, de segurança pública, uso e ocupação do solo, atividades domiciliares e restrições ao uso de espaços públicos.</p>
+							  <p class="paragrafo">Declaro, sob as penas da lei, que conheço e atendo os requisitos legais exigidos pelo Estado e pela Prefeitura do Município para a dispensa da emissão do Alvará e Licença de Funcionamento, compreendidos os aspectos sanitários, ambientais, tributários, de segurança pública, uso e ocupação do solo, atividades domiciliares e restrições ao uso de espaços públicos.</p>
 							</label>
 						  </div>
 						  <div class="form-check">
@@ -5073,6 +5072,26 @@ Cadastro
 						</div>
 				  </div>
                 </div>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			
+				<script type="text/javascript">
+					$("#cep").focusout(function(){
+						$.ajax({
+							url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
+							method:'get',
+							dataType: 'json',
+							success: function(resposta){
+								$("#logradouro").val(resposta.logradouro);
+								$("#complemento").val(resposta.complemento);
+								$("#bairro").val(resposta.bairro);
+								$("#cidade").val(resposta.localidade);
+								$("#uf").val(resposta.uf);
+			
+								$("#numero").focus();
+							}
+						});
+					});
+				</script>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-success">Continuar</button>
