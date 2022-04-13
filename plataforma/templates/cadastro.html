@@ -11,50 +11,50 @@ Cadastro
         <form method="POST" action="{% url 'valida'%}">{% csrf_token %}
           <div class="form-group">
             <label for="exampleInputEmail1">NOME</label>
-            <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex .: Meu nome">
+            <input type="text" class="form-control"  style="background-color:var(--cinzaclaro);" id="nome" name="nome" required placeholder="Ex .: Meu nome">
           </div>
 		  <div class="form-group">
             <label>CPF</label>
-            <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Ex .: 000000">
+            <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" id="cpf" name="cpf" required placeholder="Ex .: 000000">
           </div>
           <div class="form-group">
             <label>EMAIL</label>
-            <input type="email" class="form-control" name="email" required placeholder="Ex .: email@gmail.com">
+            <input type="email" class="form-control" style="background-color:var(--cinzaclaro);" name="email" required placeholder="Ex .: email@gmail.com">
           </div>
 
 		  <div class="form-group">
             <label>EMAIL (Opcional)</label>
-            <input type="email" class="form-control" name="email2" placeholder="Ex .: opcional@gmail.com">
+            <input type="email" class="form-control" style="background-color:var(--cinzaclaro);" name="email2" placeholder="Ex .: opcional@gmail.com">
           </div>
 		  <div class="form-row">
           <div class="form-group col-md-6">
             <label>TELEFONE</label>
-            <input type="text" class="form-control" name="telefone" required placeholder="Ex .: (31) 91234 5678">
+            <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="telefone" required placeholder="Ex .: (31) 91234 5678">
           </div>
 
 		  <div class="form-group col-md-6">
             <label>Celular</label>
-            <input type="text" class="form-control" name="Celular" required placeholder="Ex .: (31) 91234 5678">
+            <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="Celular" required placeholder="Ex .: (31) 91234 5678">
           </div>
 		</div>
 		<hr>
 		<div class="form-group">
 			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="1" id="termo1" required>
+			  <input class="form-check-input" style="background-color:var(--cinzaclaro);" type="checkbox" value="1" id="termo1" required>
 			  <label class="form-check-label">
-			<p class="paragrafo">Autorizo o MeiCerto a validar as informaçoes no Portal do Governo (gov.br) e declaro que as informaçoes preenchidas por mim sao verdadeiras. </p>
+			<p class="textocor">Autorizo o MeiCerto a validar as informaçoes no Portal do Governo (gov.br) e declaro que as informaçoes preenchidas por mim sao verdadeiras. </p>
 			  </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" value="2" id="termo2" required>
 				<label class="form-check-label">
-				<p class="paragrafo">	Estou ciente que este e um serviço opcional e pago, prestado pela empresa MeiCerto.</p>
+				<p class="textocor">	Estou ciente que este e um serviço opcional e pago, prestado pela empresa MeiCerto.</p>
 				</label>
 			  </div>
 			  <div class="form-check">
 				<input class="form-check-input" type="checkbox" value="3" id="termo3" required>
 				<label class="form-check-label">
-				<p class="paragrafo">	Declaro estar de acordo com os <a href="/media/cadastro/TERMOS E CONDIÇÕES DE USO DOS SERVIÇOS.docx" download="Termos & Condiçôes">Termos & Condiçôes.</a></p>
+				<p class="textocor">	Declaro estar de acordo com os <a href="/media/cadastro/TERMOS E CONDIÇÕES DE USO DOS SERVIÇOS.docx" download="Termos & Condiçôes">Termos & Condiçôes.</a></p>
 				</label>
 			  </div>
 		  </div>
@@ -79,12 +79,12 @@ Cadastro
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label>Data Nascimento</label>
-							<input type="date" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento">
+							<input type="date" class="form-control" style="background-color:var(--cinzaclaro);" name="Data_Nascimento" required placeholder="Data Nascimento">
 						  </div>
 					  </div>
 					  <div class="form-group">
 						<label for="inputAddress2">NOME EMPRESARIAL</label>
-						<input type="text" class="form-control" id="nomeempresarial" readonly>
+						<input type="text" class="form-control"  id="nomeempresarial" readonly>
 					  </div>
 					  <div class="form-row">
 						<div class="form-group col-md-6">
@@ -104,18 +104,18 @@ Cadastro
 					  </div>
 					  <div class="form-group">
 						<label>NOME DA MAE</label>
-						<input type="text" class="form-control" id="inputAddress2">
+						<input type="text" style="background-color:var(--cinzaclaro);" class="form-control" id="inputAddress2">
 					  </div>
 					  <hr>
 					  <div class="modal-body">
 						<div class="form-row">
 						  <div class="col-md-4 mb-3">
 							<label>RG</label>
-							<input type="text" class="form-control" name="rg" required placeholder="Numero da RG">
+							<input type="text" style="background-color:var(--cinzaclaro);" class="form-control" name="rg" required placeholder="Numero da RG">
 						  </div>
 						  <div class="col-md-4 mb-3">
 							<label>Expedidor RG</label>
-							<input type="text" class="form-control" name="ExpeditorRG" required placeholder="Expedidor RG">
+							<input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="ExpeditorRG" required placeholder="Expedidor RG">
 						  </div>
 						  <div class="col-md-4 mb-3">
 							<label>UF RG</label>
@@ -153,11 +153,11 @@ Cadastro
 						</div>
 						  <div class="form-group">
 							  <label>Nome Fantasia</label>
-							  <input type="text" class="form-control" name="Nome_Fantasia" required placeholder="Nome Fantasia">
+							  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="Nome_Fantasia" required placeholder="Nome Fantasia">
 							</div>
 							<div class="form-group">
 							  <label>Capitao Inicial</label>
-							  <input type="text" class="form-control" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
+							  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
 							</div>
 							<div class="text-center">
 							  <div class="form-group">
@@ -4924,13 +4924,13 @@ Cadastro
 								<label for="inputEmail4">FORMA DE ATUACAO</label>
 								<div class="form-group">
 								  <div class="form-check">
-									<input class="form-check-input" type="checkbox" value="1" id="termo1">
+									<input class="form-check-input"  type="checkbox" value="1" id="termo1">
 									<label class="form-check-label">
 									  <p class="paragrafo"> ESTABELECIMENTO FIXO </p>
 									</label>
 								  </div>
 								  <div class="form-check">
-									<input class="form-check-input" type="checkbox" value="2" id="termo2" >
+									<input class="form-check-input" style="background-color:var(--cinzaclaro);" type="checkbox" value="2" id="termo2" >
 									<label class="form-check-label">
 									  <p class="paragrafo">EM LOCAL FORA DA LOJA </p>
 									</label>
@@ -4944,48 +4944,42 @@ Cadastro
 								  <div class="form-check">
 									<input class="form-check-input" type="checkbox" value="1" id="termo1">
 									<label class="form-check-label">
-									  <p class="paragrafo"> ESTABELECIMENTO FIXO </p>
-									</label>
-								  </div>
-								  <div class="form-check">
-									<input class="form-check-input" type="checkbox" value="1" id="termo1">
-									<label class="form-check-label">
 									  <p class="paragrafo"> ENDEREÇO COMERCIAL </p>
 									</label>
 								  </div>
 								</div>
 							  </div>
-			  
+							  <label for="">ENDERECO RESIDENCIAL</label>
 									  <div class="form-row">
 										  <div class="col-md-4 mb-3">
 											  <label for="cep">CEP</label>
-											  <input type="text" class="form-control" id="cep" name="cep">
+											  <input type="text" style="background-color:var(--cinzaclaro);" class="form-control" id="cep" name="cep">
 										  </div>
 										  <div class="col-md-4 mb-4">
 											  <label for="logradouro">logradouro</label>
-											  <input type="text" class="form-control" id="logradouro" name="logradouro" required placeholder="logradouro">
+											  <input type="text"  style="background-color:var(--cinzaclaro);" class="form-control" id="logradouro" name="logradouro" required placeholder="logradouro">
 										  </div>
 										  <div class="col-md-4 mb-3">
 											  <label for="numero">Numero</label>
-											  <input type="text" class="form-control" id="numero" name="numero" required placeholder="Numero">
+											  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" id="numero" name="numero" required placeholder="Numero">
 										  </div>
 										  <div class="col-md-2 mb-2">
 											  <label>Complemento</label>
-											  <input type="text" class="form-control" id="complemento" name="Complemento" required>
+											  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" id="complemento" name="Complemento" required>
 										  </div>
 										<div class="col-md-4 mb-3">
 											  <label>Bairro</label>
-											  <input type="text" class="form-control" id="bairro" name="bairro" required
+											  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" id="bairro" name="bairro" required
 												  placeholder="Complemento">
 										  </div>
 							<div class="col-md-4 mb-3">
 											  <label>Cidade</label>
-											  <input type="text" class="form-control" name="Cidade" required
+											  <input type="text" class="form-control" style="background-color:var(--cinzaclaro);" name="Cidade" required
 												  placeholder="Cidade">
 										  </div>
 							<div class="col-md-2 mb-2">
 											  <label>Estado</label>
-											  <select class="form-control" id="uf" name="uf">
+											  <select class="form-control"  id="uf" name="uf">
 								<option>AC</option>
 								<option>AL</option>
 								<option>AP</option>
@@ -5016,6 +5010,17 @@ Cadastro
 							  </select>
 										  </div>
 									  </div>
+								  </div>
+								  
+								  <label for="">Endereco Residencial e o mesmo Comercial ?</label>
+								  <br>
+								  <div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S">
+									<label class="form-check-label" for="inlineRadio1">Sim</label>
+								  </div>
+								  <div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N">
+									<label class="form-check-label" for="inlineRadio2">Nao</label>
 								  </div>
 						<br>
 						<label for="">DECLARAÇÕES</label>
