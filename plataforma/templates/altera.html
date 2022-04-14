@@ -12,28 +12,28 @@ Altera
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputEmail4">CNPJ</label>
-            <input type="text" class="form-control" id="CNPJ" placeholder="CNPJ">
+            <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00" style="background-color:var(--cinzaescuro);" class="form-control" id="cnpj" placeholder="CNPJ">
           </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
               <label for="inputEmail4">CPF</label>
-              <input type="email" class="form-control" id="CPF" placeholder="CPF">
+              <input type="email" class="form-control" data-mask="000.000.000-00" style="background-color:var(--cinzaescuro);" id="cpf" placeholder="CPF" required>
             </div>
             <div class="form-group col-md-4">
                 <label>Data Nascimento</label>
                 <input type="date" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento">
               </div>
           </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">NOME</label>
+            <input type="text" class="form-control" onblur="checkCpf()" style="background-color:var(--cinzaescuro);"id="nome" name="nome" required placeholder="Ex .: Meu nome">
+          </div>
         <div class="form-group">
           <label for="inputAddress2">NOME EMPRESARIAL</label>
-          <input type="text" class="form-control" id="nomeEmpresarial" disabled>
+          <input type="text" class="form-control" id="nomeEmpresarial" readonly>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-8">
-            <label for="inputCity">NOME DO EMPRESARIO</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
           <div class="form-group col-md-4">
             <label for="inputState">Nacionalidade</label>
             <select id="inputState" class="form-control">
@@ -51,7 +51,7 @@ Altera
           </div>
           <div class="form-group col-md-8">
             <label>NOME DA MAE</label>
-            <input type="text" class="form-control" id="inputAddress2">
+            <input type="text" class="form-control" id="nome_mae" style="background-color:var(--cinzaescuro);">
           </div>
         </div>
         <hr>
@@ -59,15 +59,15 @@ Altera
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label>RG</label>
-              <input type="text" class="form-control" name="rg" required placeholder="Numero da RG">
+              <input type="text" class="form-control" id="rg" name="rg" required placeholder="Numero da RG" style="background-color:var(--cinzaescuro);">
             </div>
             <div class="col-md-4 mb-3">
               <label>Expedidor RG</label>
-              <input type="text" class="form-control" name="ExpeditorRG" required placeholder="Expedidor RG">
+              <input type="text" class="form-control" id="ExpeditorRG" name="ExpeditorRG" required placeholder="Expedidor RG" style="background-color:var(--cinzaescuro);">
             </div>
             <div class="col-md-4 mb-3">
               <label>UF RG</label>
-              <select class="form-control" name="uf_rg">
+              <select class="form-control" id="uf_rg" name="uf_rg">
                 <option selected>Escolha um Estado...</option>
                 <option>AC</option>
                 <option>AL</option>
@@ -101,26 +101,26 @@ Altera
           </div>
             <div class="form-group">
                 <label>Nome Fantasia</label>
-                <input type="text" class="form-control" name="Nome_Fantasia" required placeholder="Nome Fantasia">
+                <input type="text" class="form-control" id="Nome_Fantasia" name="Nome_Fantasia" required placeholder="Nome Fantasia" style="background-color:var(--cinzaescuro);">
               </div>
               <div class="form-group">
                 <label>Capitao Inicial</label>
-                <input type="text" class="form-control" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
+                <input type="text" class="form-control" id="Capitao_Inicial" name="Capitao_Inicial" required placeholder="Ex .: 2.000" style="background-color:var(--cinzaescuro);">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>TELEFONE</label>
-                  <input type="text" class="form-control" name="telefone" required placeholder="Ex .: (31) 91234 5678">
+                  <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
                 </div>
       
                 <div class="form-group col-md-6">
                   <label>Celular</label>
-                  <input type="text" class="form-control" name="Celular" required placeholder="Ex .: (31) 91234 5678">
+                  <input type="text" class="form-control" id="Celular" name="Celular" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
                 </div>
               </div>
               <div class="form-group">
                 <label>EMAIL</label>
-                <input type="email" class="form-control" name="email" required placeholder="Ex .: email@gmail.com">
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Ex .: email@gmail.com" style="background-color:var(--cinzaescuro);">
               </div>
               <div class="text-center">
                 <div class="form-group">
@@ -2506,7 +2506,7 @@ Altera
                   </div>
                 </div>
                 <label for="">Ocupacao Segundaria</label>
-                <select class="custom-select" size="15" multiple>
+                <select id="userRequest_activity" class="custom-select" size="15" multiple>
                   
                       <option class="select2-results__option"
                         id="select2-ocupacao_principal-result-8re0-ABATEDOR(A) DE AVES COM COMERCIALIZAÇÃO DO PRODUTO INDEPENDENTE"
@@ -4888,7 +4888,7 @@ Altera
                   <label for="inputEmail4">FORMA DE ATUACAO</label>
                   <div class="form-group">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="1" id="termo1">
+                      <input class="form-check-input" type="checkbox" value="1" id="termo1" >
                       <label class="form-check-label">
                         <p class="paragrafo"> ESTABELECIMENTO FIXO </p>
                       </label>
@@ -4905,12 +4905,7 @@ Altera
                         <p class="paragrafo">PORTA A PORTA, POSTO MOVEIS OU POR AMBULANTES </p>
                       </label>
                     </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="1" id="termo1">
-                      <label class="form-check-label">
-                        <p class="paragrafo"> ESTABELECIMENTO FIXO </p>
-                      </label>
-                    </div>
+
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="1" id="termo1">
                       <label class="form-check-label">
@@ -4923,34 +4918,34 @@ Altera
 						<div class="form-row">
 							<div class="col-md-4 mb-3">
 								<label>CEP</label>
-								<input type="text" class="form-control" name="cep" required placeholder="Cep">
+								<input type="text" class="form-control" id="cep" name="cep" required placeholder="Cep" style="background-color:var(--cinzaescuro);">
 							</div>
 							<div class="col-md-4 mb-4">
 								<label>Rua</label>
-								<input type="text" class="form-control" name="Rua" required placeholder="Rua">
+								<input type="text" class="form-control" id="rua" name="Rua" required placeholder="Rua" style="background-color:var(--cinzaescuro);">
 							</div>
 							<div class="col-md-4 mb-3">
 								<label>Numero</label>
-								<input type="text" class="form-control" name="Numero" required placeholder="Numero">
+								<input type="text" class="form-control" id="numero" name="Numero" required placeholder="Numero" style="background-color:var(--cinzaescuro);">
 							</div>
 							<div class="col-md-2 mb-2">
 								<label>Complemento</label>
-								<input type="text" class="form-control" name="Complemento" required
+								<input type="text" class="form-control" id="complemento" name="Complemento" style="background-color:var(--cinzaescuro);"
 									placeholder="Complemento">
 							</div>
               <div class="col-md-4 mb-3">
 								<label>Bairro</label>
-								<input type="text" class="form-control" name="bairro" required
+								<input type="text" class="form-control" id="bairro" name="bairro" required style="background-color:var(--cinzaescuro);"
 									placeholder="Complemento">
 							</div>
               <div class="col-md-4 mb-3">
 								<label>Cidade</label>
-								<input type="text" class="form-control" name="Cidade" required
+								<input type="text" class="form-control" id="municipio" name="municipio" required style="background-color:var(--cinzaescuro);"
 									placeholder="Complemento">
 							</div>
               <div class="col-md-2 mb-2">
 								<label>Estado</label>
-								<select class="form-control" name="Estado">
+								<select class="form-control" id="estadocnpj" name="Estado">
                   <option>AC</option>
                   <option>AL</option>
                   <option>AP</option>
@@ -5010,7 +5005,7 @@ Altera
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="1" id="termo1" required>
               <label class="form-check-label">
-                <p class="paragrafo"> Declaro, sob as penas da lei, que conheço e atendo os requisitos legais exigidos pelo Estado e pela Prefeitura do Município para a dispensa da emissão do Alvará e Licença de Funcionamento, compreendidos os aspectos sanitários, ambientais, tributários, de segurança pública, uso e ocupação do solo, atividades domiciliares e restrições ao uso de espaços públicos.</p>
+                <p class="paragrafo">Declaro, sob as penas da lei, que conheço e atendo os requisitos legais exigidos pelo Estado e pela Prefeitura do Município para a dispensa da emissão do Alvará e Licença de Funcionamento, compreendidos os aspectos sanitários, ambientais, tributários, de segurança pública, uso e ocupação do solo, atividades domiciliares e restrições ao uso de espaços públicos.</p>
               </label>
             </div>
             <div class="form-check">
@@ -5032,6 +5027,61 @@ Altera
     </div>
       </form>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+   function checkCpf(){
+     var cpf =document.getElementById('cpf').value;
+     var nome =document.getElementById('nome').value;
+     document.getElementById('nomeEmpresarial').value= nome +' '+cpf.replace(/[^0-9]/g,'');
+   }
+</script>
+<script >
+  function checkCnpj(cnpj){
+    $.ajax({
+      'url':'https://receitaws.com.br/v1/cnpj/'+ cnpj.replace(/[^0-9]/g,''),
+      'type':"GET",
+      'dataType':'jsonp',
+      'success':function(data){
+        if(data.nome ==undefined){
+          alert(data,status +' '+ data.message)
+        }else{
+          document.getElementById('Capitao_Inicial').value = data.capital_social;
+          document.getElementById('telefone').value = data.telefone;
+          document.getElementById('email').value = data.email;
+          document.getElementById('Nome_Fantasia').value = data.fantasia;
+          document.getElementById('cep').value = data.cep;
+          document.getElementById('rua').value = data.logradouro;
+          document.getElementById('numero').value = data.numero;
+          document.getElementById('complemento').value = data.complemento;
+          document.getElementById('bairro').value = data.bairro;
+          document.getElementById('municipio').value = data.municipio;
+          document.getElementById('estadocnpj').value = data.uf;
+        }
+        console.log(data)
+      }
+    })
+  }
+
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var last_valid_selection = null;
+
+    $('#userRequest_activity').change(function(event) {
+
+    if ($(this).val().length > 10) {
+
+      $(this).val(last_valid_selection);
+      alert('Limite maximo de selecao alcançado')
+    } else {
+      last_valid_selection = $(this).val();
+
+    }
+    });
+  });
+  </script>
 </div>
 
 {% endblock %}
