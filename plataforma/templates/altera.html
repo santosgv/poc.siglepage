@@ -20,9 +20,9 @@ Altera
               <label for="inputEmail4">CPF</label>
               <input type="email" class="form-control" data-mask="000.000.000-00" style="background-color:var(--cinzaescuro);" id="cpf" placeholder="CPF" required>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-2">
                 <label>Data Nascimento</label>
-                <input type="date" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento">
+                <input type="text" data-mask="00/00/0000" class="form-control" name="Data_Nascimento" required placeholder="Data Nascimento" style="background-color:var(--cinzaescuro);">
               </div>
           </div>
           <div class="form-group">
@@ -110,12 +110,12 @@ Altera
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>TELEFONE</label>
-                  <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
+                  <input type="text" data-mask="(00)00000-0000" class="form-control" id="telefone" name="telefone" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
                 </div>
       
                 <div class="form-group col-md-6">
                   <label>Celular</label>
-                  <input type="text" class="form-control" id="Celular" name="Celular" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
+                  <input type="text" data-mask="(00)00000-0000" class="form-control" id="Celular" name="Celular" required placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
                 </div>
               </div>
               <div class="form-group">
@@ -5050,6 +5050,7 @@ Altera
           document.getElementById('telefone').value = data.telefone;
           document.getElementById('email').value = data.email;
           document.getElementById('Nome_Fantasia').value = data.fantasia;
+          document.getElementById('nomeEmpresarial').value = data.nome;
           document.getElementById('cep').value = data.cep;
           document.getElementById('rua').value = data.logradouro;
           document.getElementById('numero').value = data.numero;
