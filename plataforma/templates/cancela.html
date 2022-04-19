@@ -3,11 +3,19 @@
 Cancelar
 {% endblock %}
 {% block 'body'%}
-<div class="container">
-    <div class="text-center"> 
-        <h1>Cancelar Mai</h1>
-    </div>
-    
-</div>
+<select class="chosen-select" tabindex="8" multiple style="width:350px;" data-placeholder="teste">
+                <option value=""></option>
+                <option>teste</option>
+                <option>teste2</option>
+                <option>teste3</option>
+                <option>teste4</option>
+            </select>
+             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+           <script src="https://harvesthq.github.io/chosen/chosen.jquery.js" type="text/javascript"></script>
+            <script>
+                $(document).ready(function() {
+                    $(".chosen-select").chosen();
+                 });
+             </script>
 
 {% endblock %}

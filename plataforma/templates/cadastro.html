@@ -5011,16 +5011,78 @@ Cadastro
 										  </div>
 									  </div>
 								  </div>
-								  <hr>
 								  <label for="">Endereco Residencial e o mesmo Comercial ?</label>
 								  
-								  <div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S">
-									<label class="form-check-label" for="inlineRadio1">Sim</label>
+								  <div  class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" onclick="habilitarresidencial()" name="inlineRadioOptions" id="inlineRadio1" value="S">
+								  <label class="form-check-label" for="inlineRadio1">Sim</label>
 								  </div>
+								  
 								  <div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N">
-									<label class="form-check-label" for="inlineRadio2">Nao</label>
+								  <input class="form-check-input" type="radio" onclick="habilitarresidencial()" name="inlineRadioOptions" id="inlineRadio2" value="N">
+								  <label class="form-check-label"  for="inlineRadio2">Nao</label>
+								  </div>
+
+								  <div class="form-row " id="residencial" style="display: none;">
+									<div class="col-md-4 mb-3">
+									  <label>CEP</label>
+									  <input type="text" class="form-control" id="cep" name="cep" required placeholder="Cep" style="background-color:var(--cinzaescuro);">
+									</div>
+									<div class="col-md-4 mb-4">
+									  <label>Rua</label>
+									  <input type="text" class="form-control" id="rua" name="Rua" required placeholder="Rua" style="background-color:var(--cinzaescuro);">
+									</div>
+									<div class="col-md-4 mb-3">
+									  <label>Numero</label>
+									  <input type="text" class="form-control" id="numero" name="Numero" required placeholder="Numero" style="background-color:var(--cinzaescuro);">
+									</div>
+									<div class="col-md-2 mb-2">
+									  <label>Complemento</label>
+									  <input type="text" class="form-control" id="complemento" name="Complemento" style="background-color:var(--cinzaescuro);"
+										placeholder="Complemento">
+									</div>
+									<div class="col-md-4 mb-3">
+									  <label>Bairro</label>
+									  <input type="text" class="form-control" id="bairro" name="bairro" required style="background-color:var(--cinzaescuro);"
+										placeholder="Complemento">
+									</div>
+									<div class="col-md-4 mb-3">
+									  <label>Cidade</label>
+									  <input type="text" class="form-control" id="municipio" name="municipio" required style="background-color:var(--cinzaescuro);"
+										placeholder="Complemento">
+									</div>
+									<div class="col-md-2 mb-2">
+									  <label>Estado</label>
+									  <select class="form-control" id="estadocnpj" name="Estado">
+										<option>AC</option>
+										<option>AL</option>
+										<option>AP</option>
+										<option>AM</option>
+										<option>BA</option>
+										<option>CE</option>
+										<option>DF</option>
+										<option>ES</option>
+										<option>GO</option>
+										<option>MA</option>
+										<option>MT</option>
+										<option>MS</option>
+										<option>MG</option>
+										<option>PA</option>
+										<option>PB</option>
+										<option>PR</option>
+										<option>PE</option>
+										<option>PI</option>
+										<option>RJ</option>
+										<option>RN</option>
+										<option>RS</option>
+										<option>RO</option>
+										<option>RR</option>
+										<option>SC</option>
+										<option>SP</option>
+										<option>SE</option>
+										<option>TO</option>
+									  </select>
+									</div>
 								  </div>
 								  <hr>
 						<label for="">DECLARAÇÕES</label>
@@ -5113,6 +5175,7 @@ Cadastro
 					  document.getElementById('nomeempresarial').value= nome +' '+cpf.replace(/[^0-9]/g,'');
 					}
 				 </script>
+				 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-success">Continuar</button>
