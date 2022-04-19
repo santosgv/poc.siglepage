@@ -5176,6 +5176,21 @@ Cadastro
 					}
 				 </script>
 				 
+				 <script>
+					function habilitarresidencial(){
+					  var valida= document.getElementById('inlineRadio2').checked;
+					  
+					  if(valida == true)
+					  {
+						document.getElementById("residencial").style.display = "inline-flex";
+					  }
+					  else
+					  {
+						document.getElementById("residencial").style.display = "none";
+					  }
+				
+					}
+				  </script>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-success">Continuar</button>
