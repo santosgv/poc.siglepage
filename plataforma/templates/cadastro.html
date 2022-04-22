@@ -5167,44 +5167,6 @@ Cadastro
 						</div>
 				  </div>
                 </div>
-				
-			
-				<script type="text/javascript">
-					$("#cep").focusout(function(){
-						$.ajax({
-							url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
-							method:'get',
-							dataType: 'json',
-							success: function(resposta){
-								$("#logradouro").val(resposta.logradouro);
-								$("#complemento").val(resposta.complemento);
-								$("#bairro").val(resposta.bairro);
-								$("#cidade").val(resposta.localidade);
-								$("#uf").val(resposta.uf);
-			
-								$("#numero").focus();
-							}
-						});
-					});
-				</script>
-				<script type="text/javascript">
-					$("#cep2").focusout(function(){
-						$.ajax({
-							url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
-							method:'get',
-							dataType: 'json',
-							success: function(resposta){
-								$("#lagradouro2").val(resposta.logradouro);
-								$("#complemento2").val(resposta.complemento);
-								$("#bairro2").val(resposta.bairro);
-								$("#municipio2").val(resposta.localidade);
-								$("#uf2").val(resposta.uf);
-			
-								$("#numero2").focus();
-							}
-						});
-					});
-				</script>
 				<script>
 					function checkCpf(){
 					  var cpf =document.getElementById('cpf').value;
@@ -5261,6 +5223,42 @@ Cadastro
 				 $(".chosen-select").chosen({ width: '100%',max_selected_options:4 } );
 			  });
 		  </script>
+		  <script type="text/javascript">
+			$("#cep").focusout(function(){
+				$.ajax({
+					url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
+					method:'get',
+					dataType: 'json',
+					success: function(resposta){
+						$("#logradouro").val(resposta.logradouro);
+						$("#complemento").val(resposta.complemento);
+						$("#bairro").val(resposta.bairro);
+						$("#cidade").val(resposta.localidade);
+						$("#uf").val(resposta.uf);
+	
+						$("#numero").focus();
+					}
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$("#cep2").focusout(function(){
+				$.ajax({
+					url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
+					method:'get',
+					dataType: 'json',
+					success: function(resposta){
+						$("#lagradouro2").val(resposta.logradouro);
+						$("#complemento2").val(resposta.complemento);
+						$("#bairro2").val(resposta.bairro);
+						$("#municipio2").val(resposta.localidade);
+						$("#uf2").val(resposta.uf);
+	
+						$("#numero2").focus();
+					}
+				});
+			});
+		</script>
  
  
   </body>
