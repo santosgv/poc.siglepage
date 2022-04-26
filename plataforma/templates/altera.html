@@ -11,31 +11,31 @@ Altera
   </div>
     <form>
         <div class="form-row">
-          <div class="form-col-md-4">
+          <div class="form-group col">
             <label for="inputEmail4">CNPJ</label>
             <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00" style="background-color:var(--cinzaescuro);" class="form-control" id="cnpj" placeholder="CNPJ">
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
+        
+            <div class="form-group col">
               <label for="inputEmail4">CPF</label>
               <input type="email" class="form-control" data-mask="000.000.000-00" style="background-color:var(--cinzaescuro);" id="cpf" placeholder="CPF" required>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col">
                 <label>Data Nascimento</label>
                 <input type="text" data-mask="00/00/0000" class="form-control" name="Data_Nascimento" required placeholder="01/01/2022" style="background-color:var(--cinzaescuro);">
               </div>
-          </div>
+              <div class="form-group col">
+                <label>Nome</label>
+                <input type="text" class="form-control" onblur="checkCpf()" id="nome" name="nome" required placeholder="Ex .: Meu nome" required  style="background-color:var(--cinzaescuro);">
+              </div>
+          
         </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">NOME</label>
-            <input type="text" class="form-control" onblur="checkCpf()" style="background-color:var(--cinzaescuro);"id="nome" name="nome" required placeholder="Ex .: Meu nome">
-          </div>
         <div class="form-group">
           <label for="inputAddress2">NOME EMPRESARIAL</label>
           <input type="text" class="form-control" id="nomeEmpresarial" readonly>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col">
             <label for="inputState">Nacionalidade</label>
             <select id="inputState" class="form-control">
                 <option selected>Nascionalidade</option>
@@ -43,7 +43,7 @@ Altera
                 <option>Americado</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col">
             <label for="inputZip">SEXO</label>
             <select id="inputState" class="form-control">
                 <option>Masculino</option>
@@ -4986,6 +4986,29 @@ Altera
 						</div>
 					</div>
           <hr>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>LOGIN CONTA GOV</label>
+              <input type="text"  class="form-control" id="contagov" name="contagov" required  style="background-color:var(--cinzaescuro);">
+            </div>
+  
+            <div class="form-group col-md-6">
+              <label>SENHA CONTA GOV</label>
+              <input type="password"  class="form-control" id="senhagov" name="senhagov" required  style="background-color:var(--cinzaescuro);">
+            </div>
+            
+            <label for="">SUA CONTA POSSUI SELO PRATA OU OURO ?</label>
+								  
+			<div  class="form-check form-check-inline">
+			<input class="form-check-input" onclick="checkgovs()" type="radio"  name="gov" id="govs" value="S">
+			<label class="form-check-label" for="inlineRadio1">Sim</label>
+			</div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" onclick="checkgov()" type="radio"  name="gov" id="govn" value="N">
+        <label class="form-check-label"  for="inlineRadio2">Nao</label>
+        </div>
+          </div>
+          <hr>
           <div class="text-center textocor">
             <h3>NOVO ENDERECO RESIDENCIAL</h3>
           </div>
@@ -5004,15 +5027,15 @@ Altera
           <div class="form-row " id="residencial" style="display: none;">
             <div class="col-md-4 mb-3">
               <label>CEP</label>
-              <input type="text" class="form-control" id="cep" name="cep" required placeholder="Cep" style="background-color:var(--cinzaescuro);">
+              <input type="text" class="form-control" id="cep2" name="cep2" required placeholder="Cep" style="background-color:var(--cinzaescuro);">
             </div>
             <div class="col-md-4 mb-4">
               <label>Rua</label>
-              <input type="text" class="form-control" id="rua" name="Rua" required placeholder="Rua" style="background-color:var(--cinzaescuro);">
+              <input type="text" class="form-control" id="lagradouro2" name="lagradouro2" required placeholder="Rua" style="background-color:var(--cinzaescuro);">
             </div>
             <div class="col-md-4 mb-3">
               <label>Numero</label>
-              <input type="text" class="form-control" id="numero" name="Numero" required placeholder="Numero" style="background-color:var(--cinzaescuro);">
+              <input type="text" class="form-control" id="numero2" name="Numero2" required placeholder="Numero" style="background-color:var(--cinzaescuro);">
             </div>
             <div class="col-md-2 mb-2">
               <label>Complemento</label>
@@ -5021,17 +5044,17 @@ Altera
             </div>
             <div class="col-md-4 mb-3">
               <label>Bairro</label>
-              <input type="text" class="form-control" id="bairro" name="bairro" required style="background-color:var(--cinzaescuro);"
+              <input type="text" class="form-control" id="bairro2" name="bairro2" required style="background-color:var(--cinzaescuro);"
                 placeholder="Complemento">
             </div>
             <div class="col-md-4 mb-3">
               <label>Cidade</label>
-              <input type="text" class="form-control" id="municipio" name="municipio" required style="background-color:var(--cinzaescuro);"
+              <input type="text" class="form-control" id="municipio2" name="municipio2" required style="background-color:var(--cinzaescuro);"
                 placeholder="Complemento">
             </div>
             <div class="col-md-2 mb-2">
               <label>Estado</label>
-              <select class="form-control" id="estadocnpj" name="Estado">
+              <select class="form-control" id="estadocnpj2" name="estadocnpj2">
                 <option>AC</option>
                 <option>AL</option>
                 <option>AP</option>
@@ -5073,7 +5096,7 @@ Altera
             </div>
           </div>
           <div class="text-center">
-        <button type="submit" class="btn btn-success">Continuar</button>
+        <button type="submit" class="btn btn-success" id="continuar">Continuar</button>
       </div>
     </div>
       </form>
@@ -5139,6 +5162,35 @@ Altera
 
     }
   </script>
+  <script>
+    function checkgovs(){
+    var valida= document.getElementById('govs').checked;
+    
+    if(valida == true)
+    {
+      document.getElementById("continuar").disabled = false;
+      return;
+    }
+    else{
+      document.getElementById("continuar").disabled = true;
+    }
+    }
+  </script>
+  <script>
+    function checkgov(){
+    var valida= document.getElementById('govn').checked;
+    
+    if(valida == true)
+    {
+      document.getElementById("continuar").disabled = true;
+      alert('PARA FORMALIZAR SEU PEDIDO DO MEI SUA CONTA GOV, PRECISA SER SELO PRATA OU OUTRO, CASO NAO SEJA FAVOR BAIXAR O APLICATIVO DO GOV PARA ATUALIZAR SEU CADASTRO, DEPOIS RETORNE AO NOSSO SITE MEI CERTO E CONTINUE A FORMALIZAÇÂO DO SEI MEI')
+      return;
+    }
+    else{
+      document.getElementById("continuar").disabled = false;
+    }
+    }
+  </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -5168,7 +5220,24 @@ Altera
     });
   });
 </script>
+<script type="text/javascript">
+  $("#cep2").focusout(function(){
+    $.ajax({
+      url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
+      method:'get',
+      dataType: 'json',
+      success: function(resposta){
+        $("#lagradouro2").val(resposta.logradouro);
+        $("#complemento2").val(resposta.complemento);
+        $("#bairro2").val(resposta.bairro);
+        $("#municipio2").val(resposta.localidade);
+        $("#estadocnpj2").val(resposta.uf);
 
+        $("#numero2").focus();
+      }
+    });
+  });
+</script>
 </div>
 
 {% endblock %}

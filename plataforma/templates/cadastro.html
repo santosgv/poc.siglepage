@@ -29,12 +29,12 @@ Cadastro
 		  <div class="form-row">
           <div class="form-group col-md-6">
             <label>TELEFONE</label>
-            <input type="text" class="form-control" data-mask="(00)00000-0000" style="background-color:var(--cinzaescuro);" name="telefone" required placeholder="Ex .: (31) 91234 5678">
+            <input type="text" class="form-control" data-mask="00000-0000" style="background-color:var(--cinzaescuro);" name="telefone" required placeholder="Ex .: 91234 5678">
           </div>
 
 		  <div class="form-group col-md-6">
             <label>Celular</label>
-            <input type="text" class="form-control" data-mask="(00)00000-0000" style="background-color:var(--cinzaescuro);" name="Celular" required placeholder="Ex .: (31) 91234 5678">
+            <input type="text" class="form-control" data-mask="00000-0000" style="background-color:var(--cinzaescuro);" name="Celular" required placeholder="Ex .: 91234 5678">
           </div>
 		</div>
 		<div class="form-row">
@@ -48,10 +48,10 @@ Cadastro
 			  <input type="password" class="form-control"  style="background-color:var(--cinzaescuro);" name="senhacontagome" required>
 			</div>
 			<div>
-			<label for="">SUA CONTA POSSUI SETO PRATA OU OURO ?</label>
+			<label for="">SUA CONTA POSSUI SELO PRATA OU OURO ?</label>
 								  
 			<div  class="form-check form-check-inline">
-			<input class="form-check-input" type="radio"  name="gov" id="govs" value="S">
+			<input class="form-check-input" onclick="checkgovs()" type="radio"  name="gov" id="govs" value="S">
 			<label class="form-check-label" for="inlineRadio1">Sim</label>
 			</div>
 			
@@ -84,7 +84,7 @@ Cadastro
 		  </div>
 		  <hr>
           <div class="container text-center">
-          <button onclick="nomeEmpresa()" type="button" class="btn btn-success text" data-toggle="modal" data-target="#exampleModal">
+          <button onclick="nomeEmpresa()" type="button" id="continuar" class="btn btn-success text" data-toggle="modal" data-target="#exampleModal">
             Continuar
           </button>
           </div>
@@ -103,7 +103,7 @@ Cadastro
 					<div class="form-row">
 						<div class="form-group col-md-2">
 							<label>Nascimento</label>
-							<input type="text" class="form-control" data-mask="00/00/0000" style="background-color:var(--cinzaescuro);" name="Data_Nascimento" required placeholder="Data Nascimento">
+							<input type="text" class="form-control" data-mask="00/00/0000" style="background-color:var(--cinzaescuro);" name="Data_Nascimento" required placeholder="01/01/2000">
 						  </div>
 						  <div class="form-group col-md-10">
 							<label for="inputAddress2">NOME EMPRESARIAL</label>
@@ -188,7 +188,7 @@ Cadastro
 							</div>
 							<div class="form-group">
 							  <label>Capitao Inicial</label>
-							  <input type="text" class="form-control"  data-mask="000.000.000,00" style="background-color:var(--cinzaescuro);" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
+							  <input type="text" class="form-control"  data-mask="000,00" style="background-color:var(--cinzaescuro);" name="Capitao_Inicial" required placeholder="Ex .: 2.000">
 							</div>
 							<div class="text-center">
 							  <div class="form-group">
@@ -5009,14 +5009,14 @@ Cadastro
 											  <input type="text" class="form-control" style="background-color:var(--cinzaescuro);" id="bairro" name="bairro" required
 												  placeholder="Complemento">
 										  </div>
-							<div class="col-md-4 mb-3">
+										<div class="col-md-4 mb-3">
 											  <label>Cidade</label>
-											  <input type="text" class="form-control" style="background-color:var(--cinzaescuro);" name="Cidade" required
+											  <input type="text" class="form-control" style="background-color:var(--cinzaescuro);" id="Cidade" name="Cidade" required
 												  placeholder="Cidade">
 										  </div>
 							<div class="col-md-2 mb-2">
 											  <label>Estado</label>
-											  <select class="form-control"  id="uf" name="uf" >
+											  <select class="form-control"  id="uf1" name="uf1" >
 								<option>AC</option>
 								<option>AL</option>
 								<option>AP</option>
@@ -5048,7 +5048,7 @@ Cadastro
 										  </div>
 									  </div>
 								  </div>
-								  <label for="">Endereco Residencial e o mesmo Comercial ?</label>
+								  <label for="">Endereco Comercial e o mesmo Residencial ?</label>
 								  
 								  <div  class="form-check form-check-inline">
 								  <input class="form-check-input" type="radio" onclick="habilitarresidencial()" name="inlineRadioOptions" id="inlineRadio1" value="S">
@@ -5090,7 +5090,7 @@ Cadastro
 									</div>
 									<div class="col-md-2 mb-2">
 									  <label>Estado</label>
-									  <select class="form-control" id="estadocnpj2" name="Estado">
+									  <select class="form-control" id="estadocnpj2" name="estadocnpj2">
 										<option>AC</option>
 										<option>AL</option>
 										<option>AP</option>
@@ -5194,16 +5194,33 @@ Cadastro
 				
 					}
 				  </script>
-
+				<script>
+					function checkgovs(){
+					var valida= document.getElementById('govs').checked;
+					
+					if(valida == true)
+					{
+						document.getElementById("continuar").disabled = false;
+						return;
+					}
+					else{
+						document.getElementById("continuar").disabled = true;
+					}
+					}
+				</script>
 				<script>
 					function checkgov(){
 					var valida= document.getElementById('govn').checked;
 					
 					if(valida == true)
 					{
+						document.getElementById("continuar").disabled = true;
 						alert('PARA FORMALIZAR SEU PEDIDO DO MEI SUA CONTA GOV, PRECISA SER SELO PRATA OU OUTRO, CASO NAO SEJA FAVOR BAIXAR O APLICATIVO DO GOV PARA ATUALIZAR SEU CADASTRO, DEPOIS RETORNE AO NOSSO SITE MEI CERTO E CONTINUE A FORMALIZAÇÂO DO SEI MEI')
+						return;
 					}
-					
+					else{
+						document.getElementById("continuar").disabled = false;
+					}
 					}
 				</script>
 
@@ -5234,8 +5251,8 @@ Cadastro
 						$("#logradouro").val(resposta.logradouro);
 						$("#complemento").val(resposta.complemento);
 						$("#bairro").val(resposta.bairro);
-						$("#cidade").val(resposta.localidade);
-						$("#uf").val(resposta.uf);
+						$("#Cidade").val(resposta.localidade);
+						$("#uf1").val(resposta.uf);
 	
 						$("#numero").focus();
 					}
@@ -5253,7 +5270,7 @@ Cadastro
 						$("#complemento2").val(resposta.complemento);
 						$("#bairro2").val(resposta.bairro);
 						$("#municipio2").val(resposta.localidade);
-						$("#uf2").val(resposta.uf);
+						$("#estadocnpj2").val(resposta.uf);
 	
 						$("#numero2").focus();
 					}
