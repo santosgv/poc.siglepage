@@ -122,56 +122,84 @@ def stripe_webhook(request):
 
 def valida(request):
     nome = request.POST.get('nome')
-    email = request.POST.get('email')
-    telefone = request.POST.get('telefone')
     cpf = request.POST.get('cpf')
+    email = request.POST.get('email')
+    email2 = request.POST.get('email2')
+    telefone = request.POST.get('telefone')
+    celular = request.POST.get('Celular')
+    logingov = request.POST.get('contagome')
+    senhagov = request.POST.get('senhacontagome')
+    Data_Nascimento = request.POST.get('Data_Nascimento')
+    nomeimpressarial = request.POST.get('nomeempresarial')
+    nacionalidade = request.POST.get('nacionalidade')
+    sexo = request.POST.get('SEXO')
+    nomemae= request.POST.get('nomemae')
+    tituloeleitor = request.POST.get('tituloeleitor')
     rg = request.POST.get('rg')
     ExpeditorRG = request.POST.get('ExpeditorRG')
     uf_rg = request.POST.get('uf_rg')
-    Data_Nascimento = request.POST.get('Data_Nascimento')
-    Nome_Mae = request.POST.get('Nome_Mae')
-    Banco = request.POST.get('Banco')
-    Imposto = request.POST.get('Imposto')
     Nome_Fantasia = request.POST.get('Nome_Fantasia')
     Capitao_Inicial =request.POST.get('Capitao_Inicial')
-    OcupacaoPrincipal = request.POST.get('OcupacaoPrincipal')
-    OcupacaoSegundario = request.POST.get('OcupacaoSegundario')
+    OcupacaoPrimaria = request.POST.get('OcupacaoPrimaria')
+    OcupacaoSegundario = request.POST.getlist('Ocupacao_Segundaria')
+    formaatuacao = request.POST.getlist('checks')
     cep = request.POST.get('cep')
-    Rua = request.POST.get('Rua')
-    Numero = request.POST.get('Numero')
-    Complemento = request.POST.get('Complemento')
-    Bairro = request.POST.get('Bairro')
+    Rua = request.POST.get('logradouro')
+    Numero = request.POST.get('numero')
+    Complemento = request.POST.get('complemento')
+    Bairro = request.POST.get('bairro')
     Cidade = request.POST.get('Cidade')
-    Estado = request.POST.get('Estado')
+    Estado = request.POST.get('uf1')
+    residencial_cep = request.POST.get('cep2')
+    residencial_logradouro = request.POST.get('logradouro2')
+    residencial_Numero = request.POST.get('numero2')
+    residencial_Complemento = request.POST.get('complemento2')
+    residencial_Bairro = request.POST.get('bairro2')
+    residencial_Cidade = request.POST.get('municipio2')
+    residencial_Estado = request.POST.get('estadocnpj2')
 
-    Cadastro =Acessoria(nome = nome, 
-                        email= email,
-                        CPF =cpf,
-                        telefone=telefone,
-                        RG = rg,
-                        ExpeditorRG =ExpeditorRG,
-                        UF_RG =uf_rg,
-                        Data_Nascimento = Data_Nascimento,
-                        Nome_Mae = Nome_Mae,
-                        Banco = Banco,
-                        Imposto = Imposto,
-                        Nome_Fantasia =Nome_Fantasia ,
-                        Capitao_Inicial = Capitao_Inicial,
-                        OcupacaoPrincipal = OcupacaoPrincipal,
-                        OcupacaoSegundario = OcupacaoSegundario,
-                        CEP =cep ,
-                        Rua = Rua,
-                        Numero =Numero,
-                        Complemento =Complemento,
-                        Bairro =Bairro,
-                        Cidade =Cidade ,
-                        Estado =Estado,
-                        
-                        )
+    Cadastro =Acessoria(
+        nome = nome,
+        CPF =cpf,
+        email = email,
+        email2 = email2,
+        telefone = telefone,
+        celular = celular,
+        logingov = logingov,
+        senhagov = senhagov,
+        Data_Nascimento = Data_Nascimento,
+        nome_Impresarial = nomeimpressarial,
+        nacionalidade = nacionalidade,
+        sexo = sexo,
+        Nome_Mae= nomemae,
+        tituloeleitor = tituloeleitor,
+        RG = rg,
+        ExpeditorRG = ExpeditorRG,
+        UF_RG = uf_rg,
+        Nome_Fantasia = Nome_Fantasia,
+        Capitao_Inicial = Capitao_Inicial,
+        OcupacaoPrincipal = OcupacaoPrimaria,
+        OcupacaoSegundario = OcupacaoSegundario,
+        formaatuacao = formaatuacao,
+        CEP = cep,
+        logradouro = Rua,
+        Numero = Numero,
+        Complemento = Complemento,
+        Bairro = Bairro,
+        Cidade = Cidade,
+        Estado = Estado,
+        residencial_CEP = residencial_cep,
+        residencial_logradouro = residencial_logradouro,
+        residencial_Numero = residencial_Numero,
+        residencial_Complemento = residencial_Complemento,
+        residencial_Bairro = residencial_Bairro,
+        residencial_Cidade = residencial_Cidade,
+        residencial_Estado = residencial_Estado,
+    )
     Cadastro.save()
-
+  
     produto =Produto.objects.get(id=1)
-   
+
     return render(request,'pagamento.html',{'cadastro':Cadastro,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
 
