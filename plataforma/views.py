@@ -11,8 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 stripe.api_key= settings.STRIPE_SECRET_KEY
 
 def home(request):
-    produto=Produto.objects.get(id=1)
-    return render(request,'home.html',{'produto':produto})
+    return render(request,'home.html')
 
 def cadastro(request):
     return render(request,'cadastro.html')
@@ -82,7 +81,6 @@ def create_payment(request,id):
     return JsonResponse({
         'clientSecret': intent['client_secret']
         })
-  
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -202,12 +200,17 @@ def valida(request):
 
     return render(request,'pagamento.html',{'cadastro':Cadastro,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
-
-
 def alterar(request):
     return render(request,'altera.html')
 
+def validaalterar(request):
+    cnpj = request.POST.get('cnpj')
+    print(cnpj)
+    #produto =Produto.objects.get(id=2)
+    return HttpResponse(cnpj)
+
 def cancelar(request):
+    
     return render(request,'cancela.html')
 
 def declaracao(request):

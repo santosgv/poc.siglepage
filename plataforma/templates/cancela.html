@@ -3,6 +3,13 @@
 Cancelar
 {% endblock %}
 {% block 'body'%}
-
+<form method="POST" action="{% url 'validaalterar'%}">{% csrf_token %}
+    <div class="form-group col">
+        <label for="inputEmail4">CNPJ</label>
+        <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00"
+          style="background-color:var(--cinzaescuro);" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ">
+      </div>
+      <input class="botao" type="submit" value="comprars">
+</form>
 
 {% endblock %}

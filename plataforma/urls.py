@@ -6,7 +6,10 @@ urlpatterns = [
     path('',views.home ,name='home'),
     path('cadastro/',views.cadastro,name='cadastro'),
     path('valida/',views.valida,name='valida'),
+
     path('alterar/',views.alterar,name='alterar'),
+    path('validaalterar/',views.validaalterar,name='validaalterar'),
+    
     path('cancelar/',views.cancelar,name='cancelar'),
     path('declaracao/',views.declaracao,name='declaracao'),
     path('dividaativa/',views.dividaativa,name='dividaativa'),
