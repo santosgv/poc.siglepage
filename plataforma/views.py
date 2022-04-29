@@ -1,9 +1,10 @@
+from cgitb import reset
 import json
 from urllib import request
 from django.http import JsonResponse
 from django.shortcuts import render , HttpResponse
 from django.core.mail import send_mail
-from .models import Acessoria,Produto,Pedidos
+from .models import Acessoria,Alterar,Produto,Pedidos
 import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -205,13 +206,91 @@ def alterar(request):
 
 def validaalterar(request):
     cnpj = request.POST.get('cnpj')
-    print(cnpj)
-    #produto =Produto.objects.get(id=2)
-    return HttpResponse(cnpj)
+    cpf = request.POST.get('cpf')
+    datanascimento = request.POST.get('Data_Nascimento')
+    nome = request.POST.get('nome')
+    nomeEmpresarial = request.POST.get('nomeEmpresarial')
+    nacionalidade = request.POST.get('nacionalidade')
+    sexo = request.POST.get('sexo')
+    nome_mae = request.POST.get('nome_mae')
+    rg = request.POST.get('rg')
+    ExpeditorRG = request.POST.get('ExpeditorRG')
+    uf_rg = request.POST.get('uf_rg')
+    Nome_Fantasia = request.POST.get('Nome_Fantasia')
+    Capitao_Inicial = request.POST.get('Capitao_Inicial')
+    telefone = request.POST.get('telefone')
+    Celular = request.POST.get('Celular')
+    email = request.POST.get('email')
+    OcupacaoPrimaria = request.POST.get('OcupacaoPrimaria')
+    Ocupacao_Segundaria = request.POST.get('Ocupacao_Segundaria')
+    formaatuacao = request.POST.getlist('checks')
+    cep = request.POST.get('cep')
+    rua = request.POST.get('rua')
+    numero = request.POST.get('numero')
+    complemento = request.POST.get('complemento')
+    bairro = request.POST.get('bairro')
+    municipio = request.POST.get('municipio')
+    estadocnpj = request.POST.get('estadocnpj')
+    contagov = request.POST.get('contagov')
+    senhagov = request.POST.get('senhagov')
+    cep2 = request.POST.get('cep2')
+    lagradouro2 = request.POST.get('lagradouro2')
+    numero2 = request.POST.get('numero2')
+    complemento2 = request.POST.get('complemento2')
+    bairro2 = request.POST.get('bairro2')
+    municipio2 = request.POST.get('municipio2')
+    estadocnpj2 = request.POST.get('estadocnpj2')
+
+    AlterarMei =Alterar(
+    cnpj = cnpj,
+    cpf = cpf,
+    datanascimento = datanascimento,
+    nome = nome,
+    nomeEmpresarial = nomeEmpresarial,
+    nacionalidade = nacionalidade,
+    sexo = sexo,
+    nome_mae = nome_mae,
+    rg = rg,
+    ExpeditorRG = ExpeditorRG,
+    uf_rg = uf_rg,
+    Nome_Fantasia = Nome_Fantasia,
+    Capitao_Inicial = Capitao_Inicial,
+    telefone = telefone,
+    Celular = Celular,
+    email = email,
+    OcupacaoPrimaria = OcupacaoPrimaria,
+    Ocupacao_Segundaria = Ocupacao_Segundaria,
+    formaatuacao = formaatuacao,
+    cep = cep,
+    rua = rua,
+    numero = numero,
+    complemento = complemento,
+    bairro = bairro,
+    municipio = municipio,
+    estadocnpj = estadocnpj,
+    contagov = contagov,
+    senhagov = senhagov,
+    cep2 = cep2,
+    lagradouro2 = lagradouro2,
+    numero2 = numero2,
+    complemento2 = complemento2,
+    bairro2 = bairro2,
+    municipio2 = municipio2,
+    estadocnpj2 = estadocnpj2
+    )
+
+    AlterarMei.save()
+
+    produto =Produto.objects.get(id=2)
+    return HttpResponse(request,'pagamento.html',{'altera':Alterar,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+
 
 def cancelar(request):
-    
     return render(request,'cancela.html')
+
+def validacancelar(request):
+    
+    return HttpResponse('Cancelado')
 
 def declaracao(request):
     return render(request,'declaracao.html')

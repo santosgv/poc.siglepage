@@ -8,9 +8,11 @@ urlpatterns = [
     path('valida/',views.valida,name='valida'),
 
     path('alterar/',views.alterar,name='alterar'),
-    path('validaalterar/',views.validaalterar,name='validaalterar'),
+    path('validaalterar/',views.validaalterar, name='validaalterar'),
     
     path('cancelar/',views.cancelar,name='cancelar'),
+    path('validacancelar/',views.validacancelar,name='validacancelar'),
+
     path('declaracao/',views.declaracao,name='declaracao'),
     path('dividaativa/',views.dividaativa,name='dividaativa'),
     path('educacao/',views.educacao,name='educacao'),

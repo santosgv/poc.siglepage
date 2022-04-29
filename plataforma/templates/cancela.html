@@ -3,7 +3,7 @@
 Cancelar
 {% endblock %}
 {% block 'body'%}
-<form method="POST" action="{% url 'validaalterar'%}">{% csrf_token %}
+<form method="POST" action="{% url 'validacancelar'%}">{% csrf_token %}
     <div class="form-group col">
         <label for="inputEmail4">CNPJ</label>
         <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00"
