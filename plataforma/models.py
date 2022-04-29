@@ -61,9 +61,9 @@ class Alterar(models.Model):
     telefone = models.CharField(max_length=200)
     Celular = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
-    OcupacaoPrimaria = models.CharField(max_length=200)
-    Ocupacao_Segundaria = models.CharField(max_length=200)
-    formaatuacao =models.CharField(max_length=200)
+    OcupacaoPrimaria = models.TextField(max_length=200)
+    Ocupacao_Segundaria = models.TextField(max_length=200)
+    formaatuacao =models.TextField(max_length=200)
     cep = models.CharField(max_length=8)
     rua = models.CharField(max_length=100)
     numero = models.CharField(max_length=5)
@@ -80,6 +80,9 @@ class Alterar(models.Model):
     bairro2 = models.CharField(blank=True,null=True,max_length=100)
     municipio2 = models.CharField(blank=True,null=True,max_length=100)
     estadocnpj2 = models.CharField(blank=True,null=True,max_length=2)
+
+    def __str__(self):
+        return self.cnpj
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100)

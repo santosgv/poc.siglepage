@@ -241,7 +241,7 @@ def validaalterar(request):
     municipio2 = request.POST.get('municipio2')
     estadocnpj2 = request.POST.get('estadocnpj2')
 
-    AlterarMei =Alterar(
+    AlterarMei = Alterar(
     cnpj = cnpj,
     cpf = cpf,
     datanascimento = datanascimento,
@@ -276,13 +276,14 @@ def validaalterar(request):
     complemento2 = complemento2,
     bairro2 = bairro2,
     municipio2 = municipio2,
-    estadocnpj2 = estadocnpj2
+    estadocnpj2 = estadocnpj2,
     )
 
     AlterarMei.save()
 
     produto =Produto.objects.get(id=2)
-    return HttpResponse(request,'pagamento.html',{'altera':Alterar,'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+
+    return render(request,'pagamento.html',{'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
 
 def cancelar(request):
