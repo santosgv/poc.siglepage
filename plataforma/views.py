@@ -286,6 +286,29 @@ def validacancelar(request):
 def declaracao(request):
     return render(request,'declaracao.html')
 
+def validadeclaracao(request):
+    cnpj = request.POST.get('cnpj')
+    Nome_Fantasia = request.POST.get('nome_fantasia')
+    nome = request.POST.get('nome')
+    cpf = request.POST.get('cpf')
+    faturamento_anual = request.POST.get('faturamento_anual')
+    logingov = request.POST.get('contagov')
+    senhagov = request.POST.get('senhacontagov')
+    
+    Declaracao =Acessoria(
+        cnpj = cnpj,
+        Nome_Fantasia = Nome_Fantasia,
+        nome = nome,
+        CPF = cpf,
+        faturamento_anual =faturamento_anual,
+        logingov  = logingov,
+        senhagov = senhagov,
+    )
+    Declaracao.save()
+
+    produto =Produto.objects.get(id=4)
+    return render(request,'pagamento.html',{'cadastro':Declaracao, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+
 def dividaativa(request):
     return render(request,'dividaativa.html')
 
