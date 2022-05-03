@@ -290,8 +290,11 @@ def cancelar(request):
     return render(request,'cancela.html')
 
 def validacancelar(request):
+
+    produto =Produto.objects.get(id=3)
+
+    return render(request,'pagamento.html',{'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
     
-    return HttpResponse('Cancelado')
 
 def declaracao(request):
     return render(request,'declaracao.html')
