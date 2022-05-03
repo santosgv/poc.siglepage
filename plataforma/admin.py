@@ -1,9 +1,7 @@
 from django.contrib import admin
-from .models import Acessoria,Alterar, Produto ,Pedidos
+from .models import Acessoria, Produto ,Pedidos
 
 admin.site.register(Acessoria)
-
-admin.site.register(Alterar)
 
 admin.site.register(Produto)
 

@@ -4,7 +4,7 @@ from urllib import request
 from django.http import JsonResponse
 from django.shortcuts import render , HttpResponse
 from django.core.mail import send_mail
-from .models import Acessoria,Alterar,Produto,Pedidos
+from .models import Acessoria,Produto,Pedidos
 import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -20,7 +20,6 @@ def cadastro(request):
 @csrf_exempt
 def create_payment(request,id):
     produto =Produto.objects.get(id=id)
-
     id_prod =json.loads(request.body)['produto']
     id_cadastro=json.loads(request.body)['id_cadastro']
     nome = json.loads(request.body)['nome']
@@ -28,23 +27,7 @@ def create_payment(request,id):
     telefone = json.loads(request.body)['telefone']
     cpf = json.loads(request.body)['cpf']
     rg = json.loads(request.body)['rg']
-    ExpeditorRG = json.loads(request.body)['ExpeditorRG']
-    uf_rg = json.loads(request.body)['uf_rg']
-    Data_Nascimento = json.loads(request.body)['Data_Nascimento']
-    Nome_Mae = json.loads(request.body)['Nome_Mae']
-    Banco = json.loads(request.body)['Banco']
-    Imposto = json.loads(request.body)['Imposto']
-    Nome_Fantasia = json.loads(request.body)['Nome_Fantasia']
-    Capitao_Inicial = json.loads(request.body)['Capitao_Inicial']
-    OcupacaoPrincipal = json.loads(request.body)['OcupacaoPrincipal']
-    OcupacaoSegundario = json.loads(request.body)['OcupacaoSegundario']
-    cep = json.loads(request.body)['cep']
-    Rua = json.loads(request.body)['Rua']
-    Numero = json.loads(request.body)['Numero']
-    Complemento = json.loads(request.body)['Complemento']
-    Bairro = json.loads(request.body)['Bairro']
-    Cidade = json.loads(request.body)['Cidade']
-    Estado = json.loads(request.body)['Estado']
+    
 
 
     # Create a PaymentIntent with the order amount and currency
@@ -60,23 +43,7 @@ def create_payment(request,id):
         'telefone':telefone,
         'cpf':cpf,
         'rg':rg,
-        'ExpeditorRG':ExpeditorRG,
-        'uf_rg':uf_rg,
-        'Data_Nascimento':Data_Nascimento,
-        'Nome_Mae':Nome_Mae,
-        'Banco':Banco,
-        'Imposto':Imposto,
-        'Nome_Fantasia':Nome_Fantasia,
-        'Capitao_Inicial':Capitao_Inicial,
-        'OcupacaoPrincipal':OcupacaoPrincipal,
-        'OcupacaoSegundario':OcupacaoSegundario,
-        'cep':cep,
-        'Rua':Rua,
-        'Numero':Numero,
-        'Complemento':Complemento,
-        'Bairro':Bairro,
-        'Cidade':Cidade,
-        'Estado':Estado,
+       
     }   
         )
     return JsonResponse({
@@ -105,16 +72,16 @@ def stripe_webhook(request):
     if event['type'] == 'charge.succeeded':
         session = event['data']['object']
         
-        
         cadastro =Acessoria.objects.get(id=session['metadata']['id_cadastro'])
-        prod =Produto.objects.get(id=1)
+
+        prod =Produto.objects.get(id=id)
     
-        pedido = Pedidos(pedido=cadastro, produto =prod,status='Pagamento aprovado')
+        pedido = Pedidos(pedido=cadastro, produto = prod ,status='Pagamento aprovado')
         pedido.save()
         
         
         mensagem =f'''
-        Segue numero do pedido do Cadastro no MEI CERTO
+        Segue numero do pedido no MEI CERTO
         {pedido.id}
         '''
         return send_mail('Pagamento realizado com sucesso',mensagem,'santosgomesv@gmail.com',recipient_list=[session['metadata']['email'],'precoflix@gmail.com'])
@@ -241,59 +208,79 @@ def validaalterar(request):
     municipio2 = request.POST.get('municipio2')
     estadocnpj2 = request.POST.get('estadocnpj2')
 
-    AlterarMei = Alterar(
+    AlterarMei = Acessoria(
     cnpj = cnpj,
-    cpf = cpf,
-    datanascimento = datanascimento,
+    CPF = cpf,
+    Data_Nascimento = datanascimento,
     nome = nome,
-    nomeEmpresarial = nomeEmpresarial,
+    nome_Impresarial = nomeEmpresarial,
     nacionalidade = nacionalidade,
     sexo = sexo,
-    nome_mae = nome_mae,
-    rg = rg,
+    Nome_Mae = nome_mae,
+    RG = rg,
     ExpeditorRG = ExpeditorRG,
-    uf_rg = uf_rg,
+    UF_RG = uf_rg,
     Nome_Fantasia = Nome_Fantasia,
     Capitao_Inicial = Capitao_Inicial,
     telefone = telefone,
-    Celular = Celular,
+    celular = Celular,
     email = email,
-    OcupacaoPrimaria = OcupacaoPrimaria,
-    Ocupacao_Segundaria = Ocupacao_Segundaria,
+    OcupacaoPrincipal = OcupacaoPrimaria,
+    OcupacaoSegundario = Ocupacao_Segundaria,
     formaatuacao = formaatuacao,
-    cep = cep,
-    rua = rua,
-    numero = numero,
-    complemento = complemento,
-    bairro = bairro,
-    municipio = municipio,
-    estadocnpj = estadocnpj,
-    contagov = contagov,
+    CEP = cep,
+    logradouro = rua,
+    Numero = numero,
+    Complemento = complemento,
+    Bairro = bairro,
+    Cidade = municipio,
+    Estado = estadocnpj,
+    logingov = contagov,
     senhagov = senhagov,
-    cep2 = cep2,
-    lagradouro2 = lagradouro2,
-    numero2 = numero2,
-    complemento2 = complemento2,
-    bairro2 = bairro2,
-    municipio2 = municipio2,
-    estadocnpj2 = estadocnpj2,
+    residencial_CEP = cep2,
+    residencial_logradouro = lagradouro2,
+    residencial_Numero = numero2,
+    residencial_Complemento = complemento2,
+    residencial_Bairro = bairro2,
+    residencial_Cidade = municipio2,
+    residencial_Estado = estadocnpj2,
     )
 
     AlterarMei.save()
 
     produto =Produto.objects.get(id=2)
 
-    return render(request,'pagamento.html',{'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    return render(request,'pagamento.html',{'cadastro':AlterarMei, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
 
 
 def cancelar(request):
     return render(request,'cancela.html')
 
 def validacancelar(request):
+    cnpj = request.POST.get('cnpj')
+    Nome_Fantasia = request.POST.get('Nome_Fantasia')
+    nome = request.POST.get('nome')
+    cpf = request.POST.get('cpf')
+    Data_Nascimento = request.POST.get('Data_Nascimento')
+    Nome_Mae = request.POST.get('nome_mae')
+    logingov = request.POST.get('contagov')
+    senhagov = request.POST.get('senhacontagov')
+    
+    BaixarMei =Acessoria(
+        cnpj = cnpj,
+        Nome_Fantasia = Nome_Fantasia,
+        nome = nome,
+        CPF = cpf,
+        Data_Nascimento = Data_Nascimento,
+        Nome_Mae =Nome_Mae ,
+        logingov  = logingov,
+        senhagov = senhagov,
+    )
+    BaixarMei.save()
 
     produto =Produto.objects.get(id=3)
 
-    return render(request,'pagamento.html',{'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    return render(request,'pagamento.html',{'cadastro':BaixarMei, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
     
 
 def declaracao(request):
