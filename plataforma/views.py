@@ -258,11 +258,13 @@ def cancelar(request):
 
 def validacancelar(request):
     cnpj = request.POST.get('cnpj')
-    Nome_Fantasia = request.POST.get('Nome_Fantasia')
+    Nome_Fantasia = request.POST.get('nome_fantasia')
     nome = request.POST.get('nome')
     cpf = request.POST.get('cpf')
     Data_Nascimento = request.POST.get('Data_Nascimento')
     Nome_Mae = request.POST.get('nome_mae')
+    telefone = request.POST.get('telefone')
+    email = request.POST.get('email')
     logingov = request.POST.get('contagov')
     senhagov = request.POST.get('senhacontagov')
     
@@ -273,6 +275,8 @@ def validacancelar(request):
         CPF = cpf,
         Data_Nascimento = Data_Nascimento,
         Nome_Mae =Nome_Mae ,
+        telefone= telefone,
+        email = email,
         logingov  = logingov,
         senhagov = senhagov,
     )
@@ -291,7 +295,11 @@ def validadeclaracao(request):
     Nome_Fantasia = request.POST.get('nome_fantasia')
     nome = request.POST.get('nome')
     cpf = request.POST.get('cpf')
-    faturamento_anual = request.POST.get('faturamento_anual')
+    revenda = request.POST.get('revenda_mercadoria')
+    prestacao = request.POST.get('prestacao')
+    transporte = request.POST.get('trasporte_de_carga')
+    telefone = request.POST.get('telefone')
+    email = request.POST.get('email')
     logingov = request.POST.get('contagov')
     senhagov = request.POST.get('senhacontagov')
     
@@ -300,7 +308,11 @@ def validadeclaracao(request):
         Nome_Fantasia = Nome_Fantasia,
         nome = nome,
         CPF = cpf,
-        faturamento_anual =faturamento_anual,
+        revenda_mercadoria = revenda,
+        prestacao = prestacao,
+        trasporte_de_carga = transporte,
+        telefone= telefone,
+        email = email,
         logingov  = logingov,
         senhagov = senhagov,
     )

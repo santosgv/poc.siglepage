@@ -14,7 +14,6 @@ Declaracao
           <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00" required
             style="background-color:var(--cinzaescuro);" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ">
         </div>
-
         <div class="form-group col">
           <label for="inputEmail4">NOME FANTASIA</label>
           <input type="text" class="form-control" required
@@ -32,10 +31,6 @@ Declaracao
         <input type="text" class="form-control" data-mask="000.000.000-00" required
           style="background-color:var(--cinzaescuro);" name="cpf" id="cpf" placeholder="CPF" >
       </div>
-      <div class="form-group col">
-        <label>Faturamento Anual</label>
-        <input type="text" class="form-control" placeholder="100.000,00" data-mask="000.000,00" id="faturamento_anual" name="faturamento_anual" style="background-color:var(--cinzaescuro);" required>
-      </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -50,6 +45,55 @@ Declaracao
             placeholder="email@gmail.com" style="background-color:var(--cinzaescuro);">
         </div>
       </div>
+      <hr>
+      <div class="text-center textocor"><h3>FATURAMENTO</h3> </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="inputEmail4">REVENDA MERCADORIA</label>
+          <input type="text" onblur="checkCnpj(this.value)" data-mask="0.000.000,00" required
+          placeholder="1.000.000,00"  style="background-color:var(--cinzaescuro);" class="form-control" name="revenda_mercadoria" id="revenda_mercadoria" placeholder="CNPJ">
+        </div>
+        <div class="form-group col">
+          <label>PRESTACAO</label>
+          <input type="text" class="form-control" placeholder="1.000.000,00"  data-mask="000.000,00" id="prestacao" name="prestacao" style="background-color:var(--cinzaescuro);" required>
+        </div>
+        <div class="form-group col">
+          <label>TRASPORTE DE CARGA</label>
+          <input type="text" class="form-control" placeholder="1.000.000,00"  data-mask="000.000,00" id="trasporte_de_carga" name="trasporte_de_carga" style="background-color:var(--cinzaescuro);" required>
+        </div>
+
+      </div>
+      <div>
+        <label for="">CONTRATOU ALGUM FUNCIONARIO DURANTE O ANO DA DECLARACAO ?</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input"  type="radio" name="#" id="#"
+                value="S">
+            <label class="form-check-label" for="inlineRadio1">Sim</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input"  type="radio" name="#" id="#"
+                value="N">
+            <label class="form-check-label" for="inlineRadio2">Nao</label>
+        </div>
+
+    </div>
+
+    <div>
+      <label for="">DURANTE O ANO DA DECLARACAO HOUVE ALGUM FUNCIONARIO CONTRATADO ?</label>
+      <div class="form-check form-check-inline">
+          <input class="form-check-input"  type="radio" name="#" id="#"
+              value="S">
+          <label class="form-check-label" for="inlineRadio1">Sim</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+          <input class="form-check-input"  type="radio" name="#" id="#"
+              value="N">
+          <label class="form-check-label" for="inlineRadio2">Nao</label>
+      </div>
+
+  </div>
       <hr>
       <div class="text-center textocor"><h3>ENDEREÇO COMERCIAL DO CNPJ</h3>
     </div>

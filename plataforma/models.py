@@ -41,6 +41,10 @@ class Acessoria(models.Model):
     residencial_Bairro = models.CharField(blank=True,null=True,max_length=50)
     residencial_Cidade = models.CharField(blank=True,null=True,max_length=50)
     residencial_Estado = models.CharField(blank=True,null=True,max_length=2)
+    revenda_mercadoria = models.CharField(blank=True,null=True,max_length=10)
+    prestacao = models.CharField(blank=True,null=True,max_length=10)
+    trasporte_de_carga = models.CharField(blank=True,null=True,max_length=10)
+    
     
 
     def __str__(self):
