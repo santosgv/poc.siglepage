@@ -5323,8 +5323,8 @@ Cadastro
 										style="background-color:var(--cinzaescuro);">
 								</div>
 								<div class="col-md-4 mb-4">
-									<label>lagradouro</label>
-									<input type="text" class="form-control" id="lagradouro2" name="lagradouro2"
+									<label>logradouro</label>
+									<input type="text" class="form-control" id="logradouro2" name="logradouro2"
 										placeholder="lagradouro" style="background-color:var(--cinzaescuro);">
 								</div>
 								<div class="col-md-4 mb-3">
@@ -5548,7 +5548,7 @@ Cadastro
 				method: 'get',
 				dataType: 'json',
 				success: function (resposta) {
-					$("#lagradouro2").val(resposta.logradouro);
+					$("#logradouro2").val(resposta.logradouro);
 					$("#complemento2").val(resposta.complemento);
 					$("#bairro2").val(resposta.bairro);
 					$("#municipio2").val(resposta.localidade);

@@ -199,9 +199,9 @@ def validaalterar(request):
     municipio = request.POST.get('municipio')
     estadocnpj = request.POST.get('estadocnpj')
     contagov = request.POST.get('contagov')
-    senhagov = request.POST.get('senhagov')
+    senhagov = request.POST.get('senhacontagov')
     cep2 = request.POST.get('cep2')
-    lagradouro2 = request.POST.get('lagradouro2')
+    logradouro2 = request.POST.get('lagradouro2')
     numero2 = request.POST.get('numero2')
     complemento2 = request.POST.get('complemento2')
     bairro2 = request.POST.get('bairro2')
@@ -238,7 +238,7 @@ def validaalterar(request):
     logingov = contagov,
     senhagov = senhagov,
     residencial_CEP = cep2,
-    residencial_logradouro = lagradouro2,
+    residencial_logradouro = logradouro2,
     residencial_Numero = numero2,
     residencial_Complemento = complemento2,
     residencial_Bairro = bairro2,
@@ -267,6 +267,13 @@ def validacancelar(request):
     email = request.POST.get('email')
     logingov = request.POST.get('contagov')
     senhagov = request.POST.get('senhacontagov')
+    cep = request.POST.get('cep')
+    Rua = request.POST.get('rua')
+    Numero = request.POST.get('numero')
+    Complemento = request.POST.get('complemento')
+    Bairro = request.POST.get('bairro')
+    Cidade = request.POST.get('municipio')
+    Estado = request.POST.get('estadocnpj')
     
     BaixarMei =Acessoria(
         cnpj = cnpj,
@@ -279,6 +286,13 @@ def validacancelar(request):
         email = email,
         logingov  = logingov,
         senhagov = senhagov,
+        CEP = cep,
+        logradouro = Rua,
+        Numero = Numero,
+        Complemento = Complemento,
+        Bairro = Bairro,
+        Cidade = Cidade,
+        Estado = Estado,
     )
     BaixarMei.save()
 
