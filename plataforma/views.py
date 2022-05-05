@@ -1,4 +1,4 @@
-from cgitb import reset
+
 import json
 from urllib import request
 from django.http import JsonResponse
@@ -316,6 +316,8 @@ def validadeclaracao(request):
     email = request.POST.get('email')
     logingov = request.POST.get('contagov')
     senhagov = request.POST.get('senhacontagov')
+    contratacao = request.POST.getlist('contratacao')
+    funcionario = request.POST.getlist('func')
     
     Declaracao =Acessoria(
         cnpj = cnpj,
@@ -329,6 +331,8 @@ def validadeclaracao(request):
         email = email,
         logingov  = logingov,
         senhagov = senhagov,
+        contratacao =contratacao,
+        funcionario = funcionario,
     )
     Declaracao.save()
 

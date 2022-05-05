@@ -44,6 +44,8 @@ class Acessoria(models.Model):
     revenda_mercadoria = models.CharField(blank=True,null=True,max_length=10)
     prestacao = models.CharField(blank=True,null=True,max_length=10)
     trasporte_de_carga = models.CharField(blank=True,null=True,max_length=10)
+    contratacao = models.CharField(blank=True,null=True,max_length=1)
+    funcionario = models.CharField(blank=True,null=True,max_length=1)
     
     
 
