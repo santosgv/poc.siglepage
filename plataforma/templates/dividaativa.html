@@ -3,11 +3,54 @@
 divida ativa
 {% endblock %}
 {% block 'body'%}
+
 <div class="container">
     <div class="text-center"> 
         <h1>divida ativa</h1>
     </div>
-    
+    <div class="form-group col">
+        <label for="inputEmail4">CNPJ</label>
+        <input type="text" onblur="cnpj()" data-mask="00.000.000/0000-00" required
+          style="background-color:var(--cinzaescuro);" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ">
+      </div>
+      <div class="form-group col">
+        <input type="text" class="form-control" name="nome_empresarial" id="nome_empresarial"
+										readonly>
+      </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    
+    function cnpj() {
+        var token = "BABA5271-01D7-4BCB-B611-9EE6D0B8F68E";
+        var cnpj = document.getElementById('cnpj').value ;
+        var cnpjtratado = cnpj.replace(/[^0-9]/g, '');
+        var ano = "2020";
+        var plugin = "SN";
+        $.ajax({
+  
+        // Endpoint da API DAS
+        url: "https://www.sintegraws.com.br/api/v1/execute-api.php?token="+token+"&cnpj="+cnpjtratado+"&ano="+ano+"&plugin="+ plugin,
+        method:'GET',
+        complete: function(xhr){
 
+            // Aqui recuperamos o JSON retornado
+            response = xhr.responseJSON;
+            
+            if(response.status == 'OK') {
+            
+            // Agora preenchemos os campos com os valores retornados
+            $('#nome_empresarial').val(response.nome_empresarial);
+            //preencher os outros campos
+            // ...
+            
+            // Aqui exibimos uma mensagem caso tenha ocorrido algum erro
+            } else {
+            alert(response.message);
+            }
+        }
+        });
+            }
+</script>
 {% endblock %}
