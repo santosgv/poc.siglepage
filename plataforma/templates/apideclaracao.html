@@ -1,0 +1,23 @@
+
+{% extends 'base.html'%}
+{% block 'head'%}
+Declaracao
+{% endblock %}
+{% block 'body'%}
+<div class="container">
+<form method="POST" action="{% url 'apivalidacao'%}">{% csrf_token %}
+<div class="form-row">
+<div class="form-group col">
+    <label for="inputEmail4">CNPJ</label>
+    <input type="text" data-mask="00.000.000/0000-00" required
+      style="background-color:var(--cinzaescuro);" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ">
+  </div>
+</div>
+<div class="text-center">
+    <input type="submit" value="Continuar" class="btn btn-success" id="continuar"></input>
+  </div>
+</form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+{% endblock %}

@@ -303,11 +303,39 @@ def validacancelar(request):
     
 
 def declaracao(request):
-    return render(request,'declaracao.html')
+    return render(request,'apideclaracao.html')
+
+
+def apivalidacao(request):
+    cnpj = request.POST.get('cnpj')
+    url = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples-dasn'
+    args = {
+    "cnpj":    cnpj,
+    "token":   "0wA6v6ErXB1eQHLcrg4OauTUhq5MN49YFn-FOmQF",
+    "timeout": 300
+    }
+
+    response = requests.post(url, args)
+    response_json = response.json()
+    response.close()
+
+    if response_json['code'] == 200:
+        print("Retorno com sucesso: ", response_json['data'])
+        dados = response_json['data']
+    elif response_json['code'] in range(600, 799):
+        mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
+        mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
+        mensagem += "; ".join(response_json['errors'])
+        print(mensagem)
+
+    print("Cabeçalho da consulta: ", response_json['header'])
+    print("URLs com comprovantes (HTML/PDF): ", response_json['site_receipts'])
+    
+    return render(request,'teste.html',{'dados' : dados})
+   
 
 def validadeclaracao(request):
     cnpj = request.POST.get('cnpj')
-
     url = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples-dasn'
     args = {
     "cnpj":    cnpj,

@@ -14,6 +14,7 @@ urlpatterns = [
     path('validacancelar/',views.validacancelar,name='validacancelar'),
 
     path('declaracao/',views.declaracao,name='declaracao'),
+    path('apivalidacao/',views.apivalidacao,name='apivalidacao'),
     path('validadeclaracao/',views.validadeclaracao,name='validadeclaracao'),
 
     path('dividaativa/',views.dividaativa,name='dividaativa'),
