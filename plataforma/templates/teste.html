@@ -4,8 +4,29 @@ TESTE
 {%endblock %} 
 {% block 'body'%}
 
-<h1>teste</h1>
-<h1>{{dados}}</h1>
+<h1>RETORNO API</h1>
+{% for dado in dados  %}
+    <h1>{{ dado.razao_social }}</h1>
+    <h1>{{ dado.cnpj }}</h1>
+   
+    <hr>
+    <Label>Ano a declarar</Label>
+    <select name="ano" id="ano">
+    {% for j in dado.original  %}
+        <option value="{{j}}">{{j}}</option>
+        {% endfor %}
+    </select>
+   
+    <hr>
+    <Label>Ano da Declaracao Retificada</Label>
+    <select name="retificadora" id="retificadora">
+    {% for k in dado.retificadora  %}
+        <option value="{{k}}">{{k}}</option>
+        {% endfor %}
+    </select>
+    
+ {% endfor %}
 
+ <a href="{{ dado.site_receipt }}">declarar</a>
 
 {%endblock %} 
