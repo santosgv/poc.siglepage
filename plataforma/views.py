@@ -321,6 +321,7 @@ def validadeclaracao(request):
 
     if response_json['code'] == 200:
         print("Retorno com sucesso: ", response_json['data'])
+        dados = response_json['data']
     elif response_json['code'] in range(600, 799):
         mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
         mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
@@ -362,7 +363,8 @@ def validadeclaracao(request):
 
     #produto =Produto.objects.get(id=4)
     #return render(request,'pagamento.html',{'cadastro':Declaracao, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
-    return HttpResponse(response_json['data'])
+    return render(request,'teste.html',{'dados' : dados})
+    #return HttpResponse(dados)
 
 def dividaativa(request):
     return render(request,'dividaativa.html')
