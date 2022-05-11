@@ -5,25 +5,20 @@ TESTE
 {% block 'body'%}
 
 {% for dado in dados  %}
-    <h1>{{ dado.razao_social }}</h1>
-    <h1>{{ dado.cnpj }}</h1>
-   
-    <hr>
-    <Label>Ano a declarar</Label>
-    <select name="ano" id="ano">
-    {% for j in dado.original  %}
-        <option value="{{j}}">{{j}}</option>
-        {% endfor %}
-    </select>
-   
-    <hr>
-    <Label>Ano da Declaracao Retificada</Label>
-    <select name="retificadora" id="retificadora">
-    {% for k in dado.retificadora  %}
-        <option value="{{k}}">{{k}}</option>
-        {% endfor %}
-    </select>
-    
+<div class="container">
+    <h1 style="color: rgb(15, 1, 1);"> Razão Social: {{ dado.razao_social }}</h1>
+    <h1 style="color: rgb(15, 1, 1);">{{ dado.cnpj }}</h1>
+  </div>
+    <div class="container">
+      <h3 class="text-center">Ano a declarar</h3>
+      <div class="row">
+    {% for ano in dado.original  %}
+    <div class="col-sm">
+      <h5 style="color: rgb(15, 1, 1);" class="ano">{{ano}}</h5>
+    </div>  
+    {% endfor %}
+  </div>
+    </div>
  {% endfor %}
 
 

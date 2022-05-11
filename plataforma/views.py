@@ -322,6 +322,8 @@ def apivalidacao(request):
     if response_json['code'] == 200:
         print("Retorno com sucesso: ", response_json['data'])
         dados = response_json['data']
+
+
     elif response_json['code'] in range(600, 799):
         mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
         mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
@@ -336,63 +338,40 @@ def apivalidacao(request):
 
 def validadeclaracao(request):
     cnpj = request.POST.get('cnpj')
-    url = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples-dasn'
-    args = {
-    "cnpj":    cnpj,
-    "token":   "0wA6v6ErXB1eQHLcrg4OauTUhq5MN49YFn-FOmQF",
-    "timeout": 300
-    }
-
-    response = requests.post(url, args)
-    response_json = response.json()
-    response.close()
-
-    if response_json['code'] == 200:
-        print("Retorno com sucesso: ", response_json['data'])
-        dados = response_json['data']
-    elif response_json['code'] in range(600, 799):
-        mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
-        mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
-        mensagem += "; ".join(response_json['errors'])
-        print(mensagem)
-
-    print("Cabeçalho da consulta: ", response_json['header'])
-    print("URLs com comprovantes (HTML/PDF): ", response_json['site_receipts'])
+    Nome_Fantasia = request.POST.get('nome_fantasia')
+    nome = request.POST.get('nome')
+    cpf = request.POST.get('cpf')
+    revenda = request.POST.get('revenda_mercadoria')
+    prestacao = request.POST.get('prestacao')
+    transporte = request.POST.get('trasporte_de_carga')
+    telefone = request.POST.get('telefone')
+    email = request.POST.get('email')
+    logingov = request.POST.get('contagov')
+    senhagov = request.POST.get('senhacontagov')
+    contratacao = request.POST.getlist('contratacao')
+    funcionario = request.POST.getlist('func')
     
-    #Nome_Fantasia = request.POST.get('nome_fantasia')
-    #nome = request.POST.get('nome')
-    #cpf = request.POST.get('cpf')
-    #revenda = request.POST.get('revenda_mercadoria')
-    #prestacao = request.POST.get('prestacao')
-    #transporte = request.POST.get('trasporte_de_carga')
-    #telefone = request.POST.get('telefone')
-    #email = request.POST.get('email')
-    #logingov = request.POST.get('contagov')
-    #senhagov = request.POST.get('senhacontagov')
-    #contratacao = request.POST.getlist('contratacao')
-    #funcionario = request.POST.getlist('func')
-    
-    #Declaracao =Acessoria(
-    #    cnpj = cnpj,
-    #    Nome_Fantasia = Nome_Fantasia,
-    #    nome = nome,
-    #    CPF = cpf,
-    #    revenda_mercadoria = revenda,
-    #    prestacao = prestacao,
-    #    trasporte_de_carga = transporte,
-    #    telefone= telefone,
-    #    email = email,
-    #    logingov  = logingov,
-    #    senhagov = senhagov,
-    #    contratacao =contratacao,
-    #    funcionario = funcionario,
-    #)
-    #Declaracao.save()
+    Declaracao =Acessoria(
+        cnpj = cnpj,
+        Nome_Fantasia = Nome_Fantasia,
+        nome = nome,
+        CPF = cpf,
+        revenda_mercadoria = revenda,
+        prestacao = prestacao,
+        trasporte_de_carga = transporte,
+        telefone= telefone,
+        email = email,
+        logingov  = logingov,
+        senhagov = senhagov,
+        contratacao =contratacao,
+        funcionario = funcionario,
+    )
+    Declaracao.save()
 
-    #produto =Produto.objects.get(id=4)
-    #return render(request,'pagamento.html',{'cadastro':Declaracao, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
-    return render(request,'teste.html',{'dados' : dados})
-    #return HttpResponse(dados)
+    produto =Produto.objects.get(id=4)
+    return render(request,'pagamento.html',{'cadastro':Declaracao, 'produto':produto, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUPLIC_KEY})
+    #return render(request,'teste.html',{'dados' : dados})
+    
 
 def dividaativa(request):
     return render(request,'dividaativa.html')
