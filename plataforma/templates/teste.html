@@ -4,30 +4,33 @@ TESTE
 {%endblock %} 
 {% block 'body'%}
 
-{% for dado in dados  %}
+{% for dado in dados.data  %}
 <div class="container">
-    <h1 style="color: rgb(15, 1, 1);"> Razão Social: {{ dado.razao_social }}</h1>
-    <h1 style="color: rgb(15, 1, 1);">{{ dado.cnpj }}</h1>
+  <div class="text-center textocor">
+    <h1>DECLARACAO ANUAL</h1>
+  </div>
+    <h1 class="text-center"> {{dado.cnpj}}</h1>
+    <h1 class="text-center"> {{dado.razao_social}}</h1>
   </div>
     <div class="container">
       <h3 class="text-center">Ano a declarar</h3>
-      <div class="row">
-    {% for ano in dado.original  %}
-    <div class="col-sm">
-      <h5 style="color: rgb(15, 1, 1);" class="ano">{{ano}}</h5>
-    </div>  
-    {% endfor %}
-  </div>
+
+      <select class="form-select" aria-label="Default select example">
+          <div class="card-body">
+            {% for i in lista %}
+            <option >{{i}}</option>
+            {% endfor%}
+          
+          </div>
+        </select>
+       
+      </select>
+      <a href="{{dado.site_receipt}}" target="_blank">declarar</a>
     </div>
  {% endfor %}
 
 
- <a href="{{dados.site_receipt}}" target="_blank">declarar</a>
-
  <div class="container">
-    <div class="text-center textocor">
-        <h1>DECLARACAO ANUAL</h1>
-      </div>
 <form method="POST" action="{% url 'validadeclaracao'%}">{% csrf_token %}
     <div class="form-row">
         <div class="form-group col">
