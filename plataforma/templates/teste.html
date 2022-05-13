@@ -14,22 +14,13 @@ TESTE
   </div>
     <div class="container">
       <h3 class="text-center">Ano a declarar</h3>
-
-      <select class="form-select" aria-label="Default select example">
-          <div class="card-body">
-            {% for i in lista %}
-            <option >{{i}}</option>
-            {% endfor%}
-          
-          </div>
-        </select>
-       
+      {% for i in dado.original%}
+      <h1> {{i}}</h1> 
+      {% endfor %}
       </select>
       <a href="{{dado.site_receipt}}" target="_blank">declarar</a>
     </div>
  {% endfor %}
-
-
  <div class="container">
 <form method="POST" action="{% url 'validadeclaracao'%}">{% csrf_token %}
     <div class="form-row">

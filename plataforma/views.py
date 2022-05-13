@@ -383,19 +383,20 @@ def apivalidacao(request):
 
     data= dados['data']
     informacoes =data[0]['original']
-    lista =[]
     anos = []
     infor = []
+    lista ={'ano':anos,'informacao':infor}
     for ano ,info in informacoes.items():
         anos.append(ano)
         infor.append(info)
-        lista.append(ano)
-        lista.append(info)
-        for i in lista :
-            print(i)
+        lista['ano']= ano
+        lista['informacao'] = info
+        print(lista["ano"],lista["informacao"])
 
   
-    return render(request,'teste.html',{'dados' : dados ,'lista':lista})
+    return render(request,'teste.html',{'dados': dados ,
+                                        'lista': lista["informacao"],
+                                        'ano': lista['ano']})
    
 
 def validadeclaracao(request):
