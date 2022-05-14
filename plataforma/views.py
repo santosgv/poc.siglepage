@@ -72,11 +72,12 @@ def stripe_webhook(request):
   
     if event['type'] == 'charge.succeeded':
         session = event['data']['object']
-        
         cadastro =Acessoria.objects.get(id=session['metadata']['id_cadastro'])
-
-        prod =Produto.objects.get(id=id)
-    
+        
+        
+        prod =Produto.objects.get(id=session['metadata']['id_prod'])
+        
+        print(prod)
         pedido = Pedidos(pedido=cadastro, produto = prod ,status='Pagamento aprovado')
         pedido.save()
         
