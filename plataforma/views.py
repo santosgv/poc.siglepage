@@ -8,7 +8,7 @@ from .models import Acessoria,Produto,Pedidos
 import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import requests
+from decouple import config
 
 stripe.api_key= settings.STRIPE_SECRET_KEY
 
@@ -306,81 +306,31 @@ def declaracao(request):
 
 
 def apivalidacao(request):
-    dados ={
-  "code": 200,
-  "code_message": "A requisição foi processada com sucesso.",
-  "header": {
-    "api_version": "v2",
-    "product": "Consultas",
-    "service": "receita-federal/simples-dasn",
-    "parameters": {
-      "cnpj": "11111111111111"
-    },
-    "client_name": "Minha Empresa",
-    "token_name": "Token de Produção",
-    "billable": 'true',
-    "price": "0.24",
-    "requested_at": "2021-12-06T15:18:58.000-03:00",
-    "elapsed_time_in_milliseconds": 716,
-    "remote_ip": "111.111.111.111",
-    "signature": "U2FsdGVkX1+75ScUBiCOEXpBL/5yGJSw8vFqP30GATP/Gy0FvXeth6EVFcCfFP57F/NJDKOV728a8QxB5DYlGQ=="
-  },
-  "data_count": 1,
-  "data": [
-    {
-      "cnpj": "11.111.111/1111-11",
-      "normalizado_cnpj": "11111111111111",
-      "original": {
-        "2021": "disponivel",
-        "2020": "indisponivel",
-        "2019": "indisponivel",
-        "2018": "indisponivel",
-        "2017": "indisponivel",
-        "2016": "indisponivel"
-      },
-      "razao_social": "Empresa XYZ",
-      "retificadora": {
-        "2021": "indisponivel",
-        "2020": "disponivel",
-        "2019": "disponivel",
-        "2018": "disponivel",
-        "2017": "disponivel",
-        "2016": "indisponivel"
-      },
-      "site_receipt": "https://www.google.com/"
+    cnpj = request.POST.get('cnpj')
+    url = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples-dasn'
+    args = {
+    "cnpj":    cnpj,
+    "token":  config('token'),
+    "timeout": 300
     }
-  ],
-  "errors": [],
-  "site_receipts": [
-    "https://www.exemplo.com/exemplo-de-url"
-  ]
-}
 
-    #cnpj = request.POST.get('cnpj')
-    #url = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples-dasn'
-    #args = {
-    #"cnpj":    cnpj,
-    #"token":   "0wA6v6ErXB1eQHLcrg4OauTUhq5MN49YFn-FOmQF",
-    #"timeout": 300
-    #}
+    response = requests.post(url, args)
+    response_json = response.json()
+    response.close()
 
-    #response = requests.post(url, args)
-    #response_json = response.json()
-    #response.close()
-
-    #if response_json['code'] == 200:
-    #    print("Retorno com sucesso: ", response_json['data'])
-    #    dados = response_json['data']
+    if response_json['code'] == 200:
+        print("Retorno com sucesso: ", response_json['data'])
+        dados = response_json['data']
 
 
-    #elif response_json['code'] in range(600, 799):
-    #    mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
-    #    mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
-    #    mensagem += "; ".join(response_json['errors'])
-    #    print(mensagem)
+    elif response_json['code'] in range(600, 799):
+        mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
+        mensagem += "Código: {} ({})\n".format(response_json['code'], response_json['code_message'])
+        mensagem += "; ".join(response_json['errors'])
+        print(mensagem)
 
-    #print("Cabeçalho da consulta: ", response_json['header'])
-    #print("URLs com comprovantes (HTML/PDF): ", response_json['site_receipts'])
+    print("Cabeçalho da consulta: ", response_json['header'])
+    print("URLs com comprovantes (HTML/PDF): ", response_json['site_receipts'])
 
     data= dados['data']
     informacoes =data[0]['original']
