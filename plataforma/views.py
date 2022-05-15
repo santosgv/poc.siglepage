@@ -9,6 +9,7 @@ import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from decouple import config
+import requests
 
 stripe.api_key= settings.STRIPE_SECRET_KEY
 
