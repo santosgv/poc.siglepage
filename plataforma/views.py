@@ -88,6 +88,11 @@ def stripe_webhook(request):
         {pedido.id}
         '''
         return send_mail('Pagamento realizado com sucesso',mensagem,'santosgomesv@gmail.com',recipient_list=[session['metadata']['email'],'precoflix@gmail.com'])
+        
+    if event['type'] == 'charge.failed':
+        session = event['data']['object']
+
+        print(session)
 
 def valida(request):
     nome = request.POST.get('nome')
