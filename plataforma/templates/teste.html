@@ -1,146 +1,24 @@
-<script>
-  /* SETUP DOS IDS DO FORM
-   * 
-   * Insira os ID's CSS de acordo com os campos do seu formulário.
-   *  Desenvolvido por DANTE TESTA
-   *  */
+<script type = "text/javascript" >
 
-  var cnpj = '#wpforms-241-field_34';
-  var situacao = '#form-field-situacao';
-  var natureza = '#form-field-natureza';
-  var capital = '#wpforms-241-field_35';
+    var $jq = jQuery.noConflict()
 
-  var nome = '#wpforms-241-field_3';
-  var fantasia = '#wpforms-241-field_36';
-  var telefone = '#wpforms-241-field_38';
-  var email = '#wpforms-241-field_39';
+$jq(document).ready(function() {
 
-  var abertura = '#form-field-abertura';
-  var porte = '#form-field-porte';
-  var atividade = '#wpforms-241-field_40';
-  var cnae = '#wpforms-241-field_41';
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $jq("#wpforms-241-field_12").val("");
 
-  var cep = '#wpforms-241-field_32-postal';
-  var rua = '#wpforms-241-field_32';
-  var numero = '#form-field-numero';
-  var complemento = '#form-field-complemento';
-  var bairro = '#wpforms[fields][32][address2]';
-  var cidade = '#wpforms-241-field_32-city';
-  var uf = '#wpforms-241-field_32-state';
-
-
-
-
-  //-------------------------------------------			
-
-  /* CODIGO BRUTO */
-  var $jq = jQuery.noConflict();
-  $jq(document).ready(function () {
-
-    function limpa_formulario() {
-      // Limpa valores do formulário.
-      $jq(cnpj).val('');
-      $jq(situacao).val('');
-      $jq(natureza).val('');
-      $jq(capital).val('');
-      $jq(nome).val('');
-      $jq(fantasia).val('');
-      $jq(telefone).val('');
-      $jq(email).val('');
-      $jq(abertura).val('');
-      $jq(porte).val('');
-      $jq(atividade).val('');
-      $jq(cnae).val('');
-      $jq(cep).val('');
-      $jq(rua).val('');
-      $jq(numero).val('');
-      $jq(complemento).val('');
-      $jq(bairro).val('');
-      $jq(cidade).val('');
-      $jq(uf).val('');
     }
 
-    //Quando o campo CNPJ perde o foco.
-    $jq(cnpj).blur(function () {
-      //Nova variável "CNPJ" somente com dígitos.
-      var cnpj_consultado = $jq(this).val().replace(/\D/g, '');
+    //Quando o campo cep perde o foco.
+    $jq("#wpforms-241-field_4").blur(function() {
 
-      //Verifica se campo CNPJ possui valor informado.
-      if (cnpj_consultado != '') {
-        //Expressão regular para validar o CNPJ.
-        var validacnpj = /^[0-9]{14}$/;
-        //Valida o formato do CNPJ.
-        if (validacnpj.test(cnpj_consultado)) {
-          //Preenche os campos com "..." enquanto consulta webservice.
-          $jq(cnpj).val('...');
-          $jq(situacao).val('...');
-          $jq(natureza).val('...');
-          $jq(capital).val('...');
-          $jq(nome).val('...');
-          $jq(fantasia).val('...');
-          $jq(telefone).val('...');
-          $jq(email).val('...');
-          $jq(abertura).val('...');
-          $jq(porte).val('...');
-          $jq(atividade).val('...');
-          $jq(cnae).val('...');
-          $jq(cep).val('...');
-          $jq(rua).val('...');
-          $jq(numero).val('...');
-          $jq(complemento).val('...');
-          $jq(bairro).val('...');
-          $jq(cidade).val('...');
-          $jq(uf).val('...');
+        //Nova variável "cep" somente com dígitos.
+        var cpf = $jq(this).val().replace(/D/g, '');
 
+        $jq("#wpforms-241-field_12").val(cpf);
 
-          //Consulta o webservice receitaws.com.br/
-          $jq.getJSON('https://www.receitaws.com.br/v1/cnpj/' + cnpj_consultado + '/?callback=?', function (dados) {
-            if (!('erro' in dados)) {
-              //Atualiza os campos com os valores da consulta.
-
-              $jq(cnpj).val(dados.cnpj);
-              $jq(situacao).val(dados.situacao);
-              $jq(natureza).val(dados.natureza_juridica);
-              $jq(capital).val('R$' + parseInt(dados.capital_social).toLocaleString());
-              $jq(nome).val(dados.nome);
-              $jq(fantasia).val(dados.fantasia);
-              $jq(telefone).val(dados.telefone);
-              $jq(email).val(dados.email);
-              $jq(abertura).val(dados.abertura);
-              $jq(porte).val(dados.porte);
-              $jq(atividade).val(dados.atividade_principal[0].text);
-              $jq(cnae).val(dados.atividade_principal[0].code);
-              $jq(cep).val(dados.cep);
-              $jq(rua).val(dados.logradouro);
-              $jq(numero).val(dados.numero);
-              $jq(complemento).val(dados.complemento);
-              $jq(bairro).val(dados.bairro);
-              $jq(cidade).val(dados.municipio);
-              $jq(uf).val(dados.uf);
-
-            } //end if.
-            else {
-              //CNPJ pesquisado não foi encontrado.
-              limpa_formulario();
-              alert('CNPJ não encontrado.');
-            }
-          });
-        } //end if.
-        else {
-          //CNPJ é inválido.
-          limpa_formulario();
-          alert('Formato de CNPJ inválido.');
-        }
-      } //end if.
-      else {
-        //CNPJ sem valor, limpa formulário.
-        limpa_formulario();
-      }
     });
-  });
+});
+
 </script>
-
-
-
-
-
