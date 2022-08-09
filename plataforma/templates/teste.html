@@ -1,297 +1,141 @@
-{% extends 'base.html'%}
-{% block 'head'%} 
-TESTE
-{%endblock %} 
-{% block 'body'%}
-
-{% for dado in dados.data  %}
-<div class="container">
-  <div class="text-center textocor">
-    <h1>DECLARACAO ANUAL</h1>
-  </div>
-    <h1 class="text-center"> {{dado.cnpj}}</h1>
-    <h1 class="text-center"> {{dado.razao_social}}</h1>
-  </div>
-    <div class="container">
-      <h3 class="text-center">Ano a declarar</h3>
-      {% for i in dado.original%}
-      <h1> {{i}}</h1> 
-      {% endfor %}
-      </select>
-      <a href="{{dado.site_receipt}}" target="_blank">declarar</a>
-    </div>
- {% endfor %}
- <div class="container">
-<form method="POST" action="{% url 'validadeclaracao'%}">{% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col">
-          <label for="inputEmail4">CNPJ</label>
-          <input type="text" onblur="checkCnpj(this.value)" data-mask="00.000.000/0000-00" required
-            style="background-color:var(--cinzaescuro);" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ">
-        </div>
-        <div class="form-group col">
-          <label for="inputEmail4">NOME FANTASIA</label>
-          <input type="text" class="form-control" required
-            style="background-color:var(--cinzaescuro);" name="nome_fantasia" id="nome_fantasia" placeholder="Nome Fantasia" >
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col">
-            <label>Nome</label>
-            <input type="text" class="form-control"  id="nome" name="nome" required 
-              placeholder="Ex .: Meu nome"  style="background-color:var(--cinzaescuro);">
-          </div>
-      <div class="form-group col">
-        <label for="inputEmail4">CPF</label>
-        <input type="text" class="form-control" data-mask="000.000.000-00" required
-          style="background-color:var(--cinzaescuro);" name="cpf" id="cpf" placeholder="CPF" >
-      </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-          <label>TELEFONE</label>
-          <input type="text" data-mask="(00)00000-0000" class="form-control" id="telefone" name="telefone" required
-            placeholder="Ex .: (31) 91234 5678" style="background-color:var(--cinzaescuro);">
-        </div>
-
-        <div class="form-group col-md-6">
-          <label>Email</label>
-          <input type="email"  class="form-control" id="email" name="email"  required
-            placeholder="email@gmail.com" style="background-color:var(--cinzaescuro);">
-        </div>
-      </div>
-      <hr>
-      <div class="text-center textocor"><h3>FATURAMENTO</h3> </div>
-      <div class="form-row">
-        <div class="form-group col">
-          <label for="inputEmail4">REVENDA MERCADORIA</label>
-          <input type="text"   required
-          placeholder="1.000.000,00"  style="background-color:var(--cinzaescuro);" class="form-control" name="revenda_mercadoria" id="revenda_mercadoria">
-        </div>
-        <div class="form-group col">
-          <label>PRESTACAO</label>
-          <input type="text" class="form-control" placeholder="1.000.000,00"   id="prestacao" name="prestacao" style="background-color:var(--cinzaescuro);" required>
-        </div>
-        <div class="form-group col">
-          <label>TRASPORTE DE CARGA</label>
-          <input type="text" class="form-control" placeholder="1.000.000,00"   id="trasporte_de_carga" name="trasporte_de_carga" style="background-color:var(--cinzaescuro);" required>
-        </div>
-
-      </div>
-      <div>
-        <label for="">CONTRATOU ALGUM FUNCIONARIO DURANTE O ANO DA DECLARACAO ?</label>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input"  type="radio" name="contratacao" id="contr1"
-                value="S">
-            <label class="form-check-label" for="inlineRadio1">Sim</label>
-        </div>
-
-        <div class="form-check form-check-inline">
-            <input class="form-check-input"  type="radio" name="contratacao" id="contr2"
-                value="N">
-            <label class="form-check-label" for="inlineRadio2">Nao</label>
-        </div>
-
-    </div>
-
-    <div>
-      <label for="">DURANTE O ANO DA DECLARACAO HOUVE ALGUM FUNCIONARIO CONTRATADO ?</label>
-      <div class="form-check form-check-inline">
-          <input class="form-check-input"  type="radio" name="func" id="func1"
-              value="S">
-          <label class="form-check-label" for="inlineRadio1">Sim</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-          <input class="form-check-input"  type="radio" name="func" id="func2"
-              value="N">
-          <label class="form-check-label" for="inlineRadio2">Nao</label>
-      </div>
-
-  </div>
-      <hr>
-      <div class="text-center textocor"><h3>ENDEREÇO COMERCIAL DO CNPJ</h3>
-    </div>
-      <hr>
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label>CEP</label>
-          <input type="text" class="form-control" id="cep" name="cep"  placeholder="Cep" required
-            style="background-color:var(--cinzaescuro);">
-        </div>
-        <div class="col-md-4 mb-4">
-          <label>Rua</label>
-          <input type="text" class="form-control" id="rua" name="rua"  placeholder="Rua" required
-            style="background-color:var(--cinzaescuro);">
-        </div>
-        <div class="col-md-4 mb-3">
-          <label>Numero</label>
-          <input type="text" class="form-control" id="numero" name="numero"  placeholder="Numero" required
-            style="background-color:var(--cinzaescuro);">
-        </div>
-        <div class="col-md-2 mb-2">
-          <label>Complemento</label>
-          <input type="text" class="form-control" id="complemento" name="complemento" required
-            style="background-color:var(--cinzaescuro);" placeholder="Complemento">
-        </div>
-        <div class="col-md-4 mb-3">
-          <label>Bairro</label>
-          <input type="text" class="form-control" id="bairro" name="bairro" required
-            style="background-color:var(--cinzaescuro);" placeholder="Complemento">
-        </div>
-        <div class="col-md-4 mb-3">
-          <label>Cidade</label>
-          <input type="text" class="form-control" id="municipio" name="municipio" required
-            style="background-color:var(--cinzaescuro);" placeholder="Municipio">
-        </div>
-        <div class="col-md-2 mb-2">
-          <label>Estado</label>
-          <select class="form-control" id="estadocnpj" name="estadocnpj" required>
-            <option selected>..</option>
-            <option>AC</option>
-            <option>AL</option>
-            <option>AP</option>
-            <option>AM</option>
-            <option>BA</option>
-            <option>CE</option>
-            <option>DF</option>
-            <option>ES</option>
-            <option>GO</option>
-            <option>MA</option>
-            <option>MT</option>
-            <option>MS</option>
-            <option>MG</option>
-            <option>PA</option>
-            <option>PB</option>
-            <option>PR</option>
-            <option>PE</option>
-            <option>PI</option>
-            <option>RJ</option>
-            <option>RN</option>
-            <option>RS</option>
-            <option>RO</option>
-            <option>RR</option>
-            <option>SC</option>
-            <option>SP</option>
-            <option>SE</option>
-            <option>TO</option>
-          </select>
-        </div>
-      </div>
-      <hr>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>LOGIN CONTA GOV</label>
-            <input type="text" class="form-control" style="background-color:var(--cinzaescuro);"
-                name="contagov" id="contagov" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label>SENHA CONTA GOV</label>
-            <input type="password" class="form-control" style="background-color:var(--cinzaescuro);"
-                name="senhacontagov" id="senhacontagov" required>
-        </div>
-      </div>
-      <div>
-        <label for="">SUA CONTA POSSUI SELO PRATA OU OURO ?</label>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" onclick="checkgovs()" type="radio" name="gov" id="govs"
-                value="S">
-            <label class="form-check-label" for="inlineRadio1">Sim</label>
-        </div>
-
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" onclick="checkgov()" type="radio" name="gov" id="govn"
-                value="N">
-            <label class="form-check-label" for="inlineRadio2">Nao</label>
-        </div>
-
-    </div>
-      <div class="text-center">
-        <input type="submit" value="Continuar" class="btn btn-success" id="continuar"></input>
-      </div>
-</form>
-</div>
 <script>
-    function checkgovs() {
-        var valida = document.getElementById('govs').checked;
+  /* SETUP DOS IDS DO FORM
+   * 
+   * Insira os ID's CSS de acordo com os campos do seu formulário.
+   *  Desenvolvido por DANTE TESTA
+   *  */
 
-        if (valida == true) {
-            document.getElementById("continuar").disabled = false;
-            return;
-        }
+  var cnpj = '#form-field-cnpj';
+  var situacao = '#form-field-situacao';
+  var natureza = '#form-field-natureza';
+  var capital = '#form-field-capital';
+
+  var nome = '#form-field-nome';
+  var fantasia = '#form-field-fantasia';
+  var telefone = '#form-field-telefone';
+  var email = '#form-field-email';
+
+  var abertura = '#form-field-abertura';
+  var porte = '#form-field-porte';
+  var atividade = '#form-field-atividade';
+  var cnae = '#form-field-cnae';
+
+  var cep = '#form-field-cep';
+  var rua = '#form-field-rua';
+  var numero = '#form-field-numero';
+  var complemento = '#form-field-complemento';
+  var bairro = '#form-field-bairro';
+  var cidade = '#form-field-cidade';
+  var uf = '#form-field-uf';
+
+
+
+
+  //-------------------------------------------			
+
+  /* CODIGO BRUTO */
+  var $jq = jQuery.noConflict();
+  $jq(document).ready(function () {
+
+    function limpa_formulario() {
+      // Limpa valores do formulário.
+      $jq(cnpj).val('');
+      $jq(situacao).val('');
+      $jq(natureza).val('');
+      $jq(capital).val('');
+      $jq(nome).val('');
+      $jq(fantasia).val('');
+      $jq(telefone).val('');
+      $jq(email).val('');
+      $jq(abertura).val('');
+      $jq(porte).val('');
+      $jq(atividade).val('');
+      $jq(cnae).val('');
+      $jq(cep).val('');
+      $jq(rua).val('');
+      $jq(numero).val('');
+      $jq(complemento).val('');
+      $jq(bairro).val('');
+      $jq(cidade).val('');
+      $jq(uf).val('');
+    }
+
+    //Quando o campo CNPJ perde o foco.
+    $jq(cnpj).blur(function () {
+      //Nova variável "CNPJ" somente com dígitos.
+      var cnpj_consultado = $jq(this).val().replace(/\D/g, '');
+
+      //Verifica se campo CNPJ possui valor informado.
+      if (cnpj_consultado != '') {
+        //Expressão regular para validar o CNPJ.
+        var validacnpj = /^[0-9]{14}$/;
+        //Valida o formato do CNPJ.
+        if (validacnpj.test(cnpj_consultado)) {
+          //Preenche os campos com "..." enquanto consulta webservice.
+          $jq(cnpj).val('...');
+          $jq(situacao).val('...');
+          $jq(natureza).val('...');
+          $jq(capital).val('...');
+          $jq(nome).val('...');
+          $jq(fantasia).val('...');
+          $jq(telefone).val('...');
+          $jq(email).val('...');
+          $jq(abertura).val('...');
+          $jq(porte).val('...');
+          $jq(atividade).val('...');
+          $jq(cnae).val('...');
+          $jq(cep).val('...');
+          $jq(rua).val('...');
+          $jq(numero).val('...');
+          $jq(complemento).val('...');
+          $jq(bairro).val('...');
+          $jq(cidade).val('...');
+          $jq(uf).val('...');
+
+
+          //Consulta o webservice receitaws.com.br/
+          $jq.getJSON('https://www.receitaws.com.br/v1/cnpj/' + cnpj_consultado + '/?callback=?', function (dados) {
+            if (!('erro' in dados)) {
+              //Atualiza os campos com os valores da consulta.
+
+              $jq(cnpj).val(dados.cnpj);
+              $jq(situacao).val(dados.situacao);
+              $jq(natureza).val(dados.natureza_juridica);
+              $jq(capital).val('R$' + parseInt(dados.capital_social).toLocaleString());
+              $jq(nome).val(dados.nome);
+              $jq(fantasia).val(dados.fantasia);
+              $jq(telefone).val(dados.telefone);
+              $jq(email).val(dados.email);
+              $jq(abertura).val(dados.abertura);
+              $jq(porte).val(dados.porte);
+              $jq(atividade).val(dados.atividade_principal[0].text);
+              $jq(cnae).val(dados.atividade_principal[0].code);
+              $jq(cep).val(dados.cep);
+              $jq(rua).val(dados.logradouro);
+              $jq(numero).val(dados.numero);
+              $jq(complemento).val(dados.complemento);
+              $jq(bairro).val(dados.bairro);
+              $jq(cidade).val(dados.municipio);
+              $jq(uf).val(dados.uf);
+
+            } //end if.
+            else {
+              //CNPJ pesquisado não foi encontrado.
+              limpa_formulario();
+              alert('CNPJ não encontrado.');
+            }
+          });
+        } //end if.
         else {
-            document.getElementById("continuar").disabled = true;
+          //CNPJ é inválido.
+          limpa_formulario();
+          alert('Formato de CNPJ inválido.');
         }
-    }
-</script>
-<script>
-    function checkgov() {
-        var valida = document.getElementById('govn').checked;
-
-        if (valida == true) {
-            document.getElementById("continuar").disabled = true;
-            alert('PARA FORMALIZAR SEU PEDIDO DO MEI SUA CONTA GOV, PRECISA SER SELO PRATA OU OUTRO, CASO NAO SEJA FAVOR BAIXAR O APLICATIVO DO GOV PARA ATUALIZAR SEU CADASTRO, DEPOIS RETORNE AO NOSSO SITE MEI CERTO E CONTINUE A FORMALIZAÇÂO DO SEI MEI')
-            return;
-        }
-        else {
-            document.getElementById("continuar").disabled = false;
-        }
-    }
-</script>
-
-<script>
-    function checkCnpj(cnpj) {
-      $.ajax({
-        'url': 'https://receitaws.com.br/v1/cnpj/' + cnpj.replace(/[^0-9]/g, ''),
-        'type': "GET",
-        'dataType': 'jsonp',
-        'success': function (data) {
-          if (data.nome == undefined) {
-            alert(data, status + ' ' + data.message)
-          } else {
-            
-            document.getElementById('telefone').value = data.telefone;
-            document.getElementById('email').value = data.email;
-            document.getElementById('nome_fantasia').value = data.fantasia;
-          }
-          console.log(data)
-        }
-      })
-    }
-  
-  </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<script type="text/javascript">
-    $("#cep").focusout(function () {
-      $.ajax({
-        url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/',
-        method: 'get',
-        dataType: 'json',
-        success: function (resposta) {
-          $("#rua").val(resposta.logradouro);
-          $("#complemento").val(resposta.complemento);
-          $("#bairro").val(resposta.bairro);
-          $("#municipio").val(resposta.localidade);
-          $("#estadocnpj").val(resposta.uf);
-  
-          $("#numero").focus();
-        }
-      });
+      } //end if.
+      else {
+        //CNPJ sem valor, limpa formulário.
+        limpa_formulario();
+      }
     });
-  </script>
-
-<script type="text/javascript">
- $('#revenda_mercadoria').mask('##.000.000,00', {reverse: true});
+  });
 </script>
-
-<script type="text/javascript">
-  $('#prestacao').mask('##.000.000,00', {reverse: true});
- </script>
-
-<script type="text/javascript">
-  $('#trasporte_de_carga').mask('##.000.000,00', {reverse: true});
- </script>
-
-{%endblock %} 
