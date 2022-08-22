@@ -332,13 +332,14 @@ def apivalidacao(request):
         razao_social = dados[0]['razao_social']
         anos =dados[0]['original']
 
-        ano_chave=anos.keys()
-        ano_valores =anos.values()
-
-        lista = ano_chave,ano_valores
+        info = anos.keys()
+        dados = anos.values()
+        # concatena duas listas para exibir em uma #
+        lista =zip( info, dados)
+        
         
 
-        return render(request,'teste.html',{'cnpj': cnpj,'razao_social':razao_social,'anos':lista
+        return render(request,'teste.html',{'cnpj': cnpj,'razao_social':razao_social,'lista':lista
                                         })
             
         
