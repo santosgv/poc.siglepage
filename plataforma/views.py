@@ -328,6 +328,21 @@ def apivalidacao(request):
         print("Retorno com sucesso: ", response_json['data'])
         dados = response_json['data']
 
+        cnpj = dados[0]['cnpj']
+        razao_social = dados[0]['razao_social']
+        anos =dados[0]['original']
+
+        ano_chave=anos.keys()
+        ano_valores =anos.values()
+
+        lista = ano_chave,ano_valores
+        
+
+        return render(request,'teste.html',{'cnpj': cnpj,'razao_social':razao_social,'anos':lista
+                                        })
+            
+        
+
 
     elif response_json['code'] in range(600, 799):
         mensagem = "Resultado sem sucesso. Leia para saber mais: \n"
@@ -338,22 +353,11 @@ def apivalidacao(request):
     print("Cabeçalho da consulta: ", response_json['header'])
     print("URLs com comprovantes (HTML/PDF): ", response_json['site_receipts'])
 
-    data= dados['data']
-    informacoes =data[0]['original']
-    anos = []
-    infor = []
-    lista ={'ano':anos,'informacao':infor}
-    for ano ,info in informacoes.items():
-        anos.append(ano)
-        infor.append(info)
-        lista['ano']= ano
-        lista['informacao'] = info
-        print(lista["ano"],lista["informacao"])
+    
 
   
-    return render(request,'teste.html',{'dados': dados ,
-                                        'lista': lista["informacao"],
-                                        'ano': lista['ano']})
+    return render(request,'teste.html',{'dados': dados
+                                        })
    
 
 def validadeclaracao(request):
@@ -400,4 +404,4 @@ def educacao(request):
     return render(request,'educacao.html')
 
 def faleconosco(request):
-    return render(request,'faleconosco.html')
+    return render(request,'teste.html')

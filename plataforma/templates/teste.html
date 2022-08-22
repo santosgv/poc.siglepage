@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block 'head'%} 
+declaracao
+{%endblock %} 
+
+{% block 'body'%}
+
+{{cnpj}}
+{{razao_social}}
+
+  {% for ano in anos %}
+    {{ano}}
+    {% endfor %}
+
+  {% endblock %}
