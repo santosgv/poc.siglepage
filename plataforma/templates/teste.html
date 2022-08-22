@@ -1,8 +1,7 @@
 {% extends 'base.html'%}
 {% block 'head'%} 
-declaracao
+TESTE
 {%endblock %} 
-
 {% block 'body'%}
 
 {{cnpj}}
@@ -12,4 +11,244 @@ declaracao
     {{ano}}
     {% endfor %}
 
-  {% endblock %}
+        <div class="form-group col-md-6">
+          <label>Email</label>
+          <input type="email"  class="form-control" id="email" name="email"  required
+            placeholder="email@gmail.com" style="background-color:var(--cinzaescuro);">
+        </div>
+      </div>
+      <hr>
+      <div class="text-center textocor"><h3>FATURAMENTO</h3> </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="inputEmail4">REVENDA MERCADORIA</label>
+          <input type="text"   required
+          placeholder="1.000.000,00"  style="background-color:var(--cinzaescuro);" class="form-control" name="revenda_mercadoria" id="revenda_mercadoria">
+        </div>
+        <div class="form-group col">
+          <label>PRESTACAO</label>
+          <input type="text" class="form-control" placeholder="1.000.000,00"   id="prestacao" name="prestacao" style="background-color:var(--cinzaescuro);" required>
+        </div>
+        <div class="form-group col">
+          <label>TRASPORTE DE CARGA</label>
+          <input type="text" class="form-control" placeholder="1.000.000,00"   id="trasporte_de_carga" name="trasporte_de_carga" style="background-color:var(--cinzaescuro);" required>
+        </div>
+
+      </div>
+      <div>
+        <label for="">CONTRATOU ALGUM FUNCIONARIO DURANTE O ANO DA DECLARACAO ?</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input"  type="radio" name="contratacao" id="contr1"
+                value="S">
+            <label class="form-check-label" for="inlineRadio1">Sim</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input"  type="radio" name="contratacao" id="contr2"
+                value="N">
+            <label class="form-check-label" for="inlineRadio2">Nao</label>
+        </div>
+
+    </div>
+
+    <div>
+      <label for="">DURANTE O ANO DA DECLARACAO HOUVE ALGUM FUNCIONARIO CONTRATADO ?</label>
+      <div class="form-check form-check-inline">
+          <input class="form-check-input"  type="radio" name="func" id="func1"
+              value="S">
+          <label class="form-check-label" for="inlineRadio1">Sim</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+          <input class="form-check-input"  type="radio" name="func" id="func2"
+              value="N">
+          <label class="form-check-label" for="inlineRadio2">Nao</label>
+      </div>
+
+  </div>
+      <hr>
+      <div class="text-center textocor"><h3>ENDEREÇO COMERCIAL DO CNPJ</h3>
+    </div>
+      <hr>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label>CEP</label>
+          <input type="text" class="form-control" id="cep" name="cep"  placeholder="Cep" required
+            style="background-color:var(--cinzaescuro);">
+        </div>
+        <div class="col-md-4 mb-4">
+          <label>Rua</label>
+          <input type="text" class="form-control" id="rua" name="rua"  placeholder="Rua" required
+            style="background-color:var(--cinzaescuro);">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Numero</label>
+          <input type="text" class="form-control" id="numero" name="numero"  placeholder="Numero" required
+            style="background-color:var(--cinzaescuro);">
+        </div>
+        <div class="col-md-2 mb-2">
+          <label>Complemento</label>
+          <input type="text" class="form-control" id="complemento" name="complemento" required
+            style="background-color:var(--cinzaescuro);" placeholder="Complemento">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Bairro</label>
+          <input type="text" class="form-control" id="bairro" name="bairro" required
+            style="background-color:var(--cinzaescuro);" placeholder="Complemento">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Cidade</label>
+          <input type="text" class="form-control" id="municipio" name="municipio" required
+            style="background-color:var(--cinzaescuro);" placeholder="Municipio">
+        </div>
+        <div class="col-md-2 mb-2">
+          <label>Estado</label>
+          <select class="form-control" id="estadocnpj" name="estadocnpj" required>
+            <option selected>..</option>
+            <option>AC</option>
+            <option>AL</option>
+            <option>AP</option>
+            <option>AM</option>
+            <option>BA</option>
+            <option>CE</option>
+            <option>DF</option>
+            <option>ES</option>
+            <option>GO</option>
+            <option>MA</option>
+            <option>MT</option>
+            <option>MS</option>
+            <option>MG</option>
+            <option>PA</option>
+            <option>PB</option>
+            <option>PR</option>
+            <option>PE</option>
+            <option>PI</option>
+            <option>RJ</option>
+            <option>RN</option>
+            <option>RS</option>
+            <option>RO</option>
+            <option>RR</option>
+            <option>SC</option>
+            <option>SP</option>
+            <option>SE</option>
+            <option>TO</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>LOGIN CONTA GOV</label>
+            <input type="text" class="form-control" style="background-color:var(--cinzaescuro);"
+                name="contagov" id="contagov" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>SENHA CONTA GOV</label>
+            <input type="password" class="form-control" style="background-color:var(--cinzaescuro);"
+                name="senhacontagov" id="senhacontagov" required>
+        </div>
+      </div>
+      <div>
+        <label for="">SUA CONTA POSSUI SELO PRATA OU OURO ?</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" onclick="checkgovs()" type="radio" name="gov" id="govs"
+                value="S">
+            <label class="form-check-label" for="inlineRadio1">Sim</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" onclick="checkgov()" type="radio" name="gov" id="govn"
+                value="N">
+            <label class="form-check-label" for="inlineRadio2">Nao</label>
+        </div>
+
+    </div>
+      <div class="text-center">
+        <input type="submit" value="Continuar" class="btn btn-success" id="continuar"></input>
+      </div>
+</form>
+</div>
+<script>
+    function checkgovs() {
+        var valida = document.getElementById('govs').checked;
+
+        if (valida == true) {
+            document.getElementById("continuar").disabled = false;
+            return;
+        }
+        else {
+            document.getElementById("continuar").disabled = true;
+        }
+    }
+</script>
+<script>
+    function checkgov() {
+        var valida = document.getElementById('govn').checked;
+
+        if (valida == true) {
+            document.getElementById("continuar").disabled = true;
+            alert('PARA FORMALIZAR SEU PEDIDO DO MEI SUA CONTA GOV, PRECISA SER SELO PRATA OU OUTRO, CASO NAO SEJA FAVOR BAIXAR O APLICATIVO DO GOV PARA ATUALIZAR SEU CADASTRO, DEPOIS RETORNE AO NOSSO SITE MEI CERTO E CONTINUE A FORMALIZAÇÂO DO SEI MEI')
+            return;
+        }
+        else {
+            document.getElementById("continuar").disabled = false;
+        }
+    }
+</script>
+
+<script>
+    function checkCnpj(cnpj) {
+      $.ajax({
+        'url': 'https://receitaws.com.br/v1/cnpj/' + cnpj.replace(/[^0-9]/g, ''),
+        'type': "GET",
+        'dataType': 'jsonp',
+        'success': function (data) {
+          if (data.nome == undefined) {
+            alert(data, status + ' ' + data.message)
+          } else {
+            
+            document.getElementById('telefone').value = data.telefone;
+            document.getElementById('email').value = data.email;
+            document.getElementById('nome_fantasia').value = data.fantasia;
+          }
+          console.log(data)
+        }
+      })
+    }
+  
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script type="text/javascript">
+    $("#cep").focusout(function () {
+      $.ajax({
+        url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/',
+        method: 'get',
+        dataType: 'json',
+        success: function (resposta) {
+          $("#rua").val(resposta.logradouro);
+          $("#complemento").val(resposta.complemento);
+          $("#bairro").val(resposta.bairro);
+          $("#municipio").val(resposta.localidade);
+          $("#estadocnpj").val(resposta.uf);
+  
+          $("#numero").focus();
+        }
+      });
+    });
+  </script>
+
+<script type="text/javascript">
+ $('#revenda_mercadoria').mask('##.000.000,00', {reverse: true});
+</script>
+
+<script type="text/javascript">
+  $('#prestacao').mask('##.000.000,00', {reverse: true});
+ </script>
+
+<script type="text/javascript">
+  $('#trasporte_de_carga').mask('##.000.000,00', {reverse: true});
+ </script>
+
+{%endblock %} 
