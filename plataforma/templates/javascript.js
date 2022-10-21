@@ -12,18 +12,25 @@
       var valores = $jq(this).val();
       let quantidade =parseInt(valores.length);
       qt = quantidade;
-      // url  'https://meicerto.com.br/checkout-2/?add-to-cart=836&quantity='+qt;
       
-      //<button type="submit" name="wpforms[submit]" id="wpforms-submit-519" class="wpforms-submit redireciona" data-alt-text="Enviando..." data-submit-text="Enviar" aria-live="assertive" value="wpforms-submit">Enviar</button>
+      console.log('https://meicerto.com.br/checkout-2/?add-to-cart=1677&quantity='+qt);
+
+     
+
+     
   });
 
-  $('#wpforms-submit-1668').on('click', function(event) {
-    event.preventDefault(); 
-    var url = $(this).data('https://meicerto.com.br/checkout-2/?add-to-cart=836&quantity='+qt);
-    //location.replace(url);
-    alert(location.replace(url));
-});
+  $jq("#wpforms-submit-519").click(function() {
+  
+    location.href = 'https://meicerto.com.br/checkout-2/?add-to-cart=836&quantity='+qt;
 
+   
+
+   
+});
+  
   });
   
   </script>
+
+
